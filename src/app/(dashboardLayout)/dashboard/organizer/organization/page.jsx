@@ -54,13 +54,6 @@ const Organization = () => {
         }
 
 
-
-
-
-
-
-
-
     }
     return (
         <div>
