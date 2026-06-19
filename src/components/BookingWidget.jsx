@@ -5,8 +5,10 @@ import { Card, Button, Input } from "@heroui/react";
 import { FaCheck } from "react-icons/fa";
 import { useSession } from "@/lib/auth-client";
 
+// 💡 এখানে ticketPrice এর পাশাপাশি price নামেও প্রোপস রিসিভ করার ব্যাকআপ রাখা হলো
 export default function BookingWidget({
   ticketPrice,
+  price, 
   availableSeats,
   eventId,
   eventTitle,
@@ -17,9 +19,9 @@ export default function BookingWidget({
 
   const isSoldOut = availableSeats <= 0;
 
-
-  const safePrice = typeof ticketPrice === 'number' ? ticketPrice : Number(ticketPrice) || 0;
-
+  // 💡 ডাটাবেজে ফিল্ডের নাম ticketPrice বা price যাই থাকুক, এটি নিখুঁতভাবে রীড করবে
+  const finalPrice = ticketPrice !== undefined ? ticketPrice : price;
+  const safePrice = typeof finalPrice === 'number' ? finalPrice : Number(finalPrice) || 0;
 
   const totalAmount = (safePrice * quantity).toFixed(2);
 
@@ -59,7 +61,7 @@ export default function BookingWidget({
                 {safePrice === 0 ? "Free" : `$${safePrice.toFixed(2)}`}
               </span>
             </div>
-            <div className="flex justify-between items-center text-sm">
+            {/* <div className="flex justify-between items-center text-sm">
               <span className="text-slate-400">Available:</span>
               <span className="text-white font-bold">
                 {isSoldOut ? (
@@ -68,7 +70,7 @@ export default function BookingWidget({
                   `${availableSeats} Seats Left`
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
 
           {!isSoldOut && (

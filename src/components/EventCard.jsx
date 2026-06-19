@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, Button } from "@heroui/react";
-import { FaRegStar, FaCopy, FaRobot, FaEye } from "react-icons/fa"; 
+import { FaRegStar, FaCopy, FaRobot, FaEye, FaTag } from "react-icons/fa"; 
 import Image from "next/image";
 
 export default function EventCard({ event }) {
@@ -18,6 +18,9 @@ export default function EventCard({ event }) {
   const imageUrl = hasValidImage 
     ? currentItem.image 
     : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe";
+
+  // 💡 টিকিট প্রাইস সেফটি চেক
+  const price = typeof currentItem?.ticketPrice === 'number' ? currentItem.ticketPrice : Number(currentItem?.ticketPrice) || 0;
 
   return (
     <Card
@@ -62,10 +65,10 @@ export default function EventCard({ event }) {
         </div>
       </div>
 
-      {/* ফুটার সেকশন (রেটিং, কপি কাউন্ট এবং বাটন) */}
-      <div className="px-6 pb-6 pt-3 flex justify-between items-center border-t-2 border-white/5 mt-auto">
-        <div className="flex flex-col gap-0.5">
-          <div className="flex items-center gap-1.5 text-amber-400 font-bold text-sm">
+      {/* ফুটার সেকশন (রেটিং, কপি কাউন্ট, প্রাইস এবং বাটন) */}
+      <div className="px-6 pb-6 pt-4 flex justify-between items-center border-t border-white/5 mt-auto bg-slate-950/20">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
             <FaRegStar />
             <span>{typeof currentItem?.rating === 'number' ? currentItem.rating.toFixed(1) : "0.0"}</span>
           </div>
@@ -73,9 +76,13 @@ export default function EventCard({ event }) {
             <FaCopy />
             <span>{currentItem?.copyCount || 0} uses</span>
           </div>
+          {/* 💡 নতুন সংযোজিত প্রাইস ট্যাগ */}
+          <div className="flex items-center gap-1.5 text-pink-400 font-extrabold text-sm mt-0.5">
+            <FaTag className="text-pink-500/70 text-xs" />
+            <span>{price === 0 ? "Free" : `$${price.toFixed(2)}`}</span>
+          </div>
         </div>
 
-        {/* 💡 ফিক্সড: currentEvent বদলে currentItem ব্যবহার করা হয়েছে */}
         <Link href={`/events/${currentItem?._id || currentItem?.id || ""}`}>
           <Button
             size="sm"

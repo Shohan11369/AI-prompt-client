@@ -15,10 +15,10 @@ export default async function BrowseEventsPage({ searchParams }) {
   if (category) params.set("category", category);
   if (location) params.set("location", location);
 
-  // .toString() করে পিওর কুয়েরি স্ট্রিং পাঠানো হলো (যেমন: search=chatgpt&category=productivity)
+
   const eventsData = await fetchEvents(params.toString());
 
-  // সেফটি চেক: ডেটা অ্যারে না হলে বা নাল হলে খালি অ্যারে সেট হবে
+
   const events = Array.isArray(eventsData) ? eventsData : [];
 
   return (
@@ -65,7 +65,7 @@ export default async function BrowseEventsPage({ searchParams }) {
           </div>
         }
       >
-        {/* 💡 যদি ফিল্টার করার পর কোনো ডেটা না মেলে */}
+      
         {events.length === 0 ? (
           <div className="text-center py-20 border border-dashed border-white/10 rounded-3xl bg-slate-900/20">
             <p className="text-slate-400 font-medium">
