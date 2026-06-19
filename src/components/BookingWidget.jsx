@@ -12,20 +12,21 @@ export default function BookingWidget({
   eventTitle,
 }) {
   const [quantity, setQuantity] = useState(0);
-
   const { data: session } = useSession();
-
   const user = session?.user;
-  // console.log(user);
 
   const isSoldOut = availableSeats <= 0;
 
-  const totalAmount = ticketPrice.toFixed(2) * quantity;
+
+  const safePrice = typeof ticketPrice === 'number' ? ticketPrice : Number(ticketPrice) || 0;
+
+
+  const totalAmount = (safePrice * quantity).toFixed(2);
 
   const handleBookTicket = async () => {
     const paymentData = {
       type: "booking",
-      ticketPrice: ticketPrice.toFixed(2),
+      ticketPrice: safePrice.toFixed(2),
       eventId,
       eventTitle,
       quantity,
@@ -39,7 +40,6 @@ export default function BookingWidget({
       body: JSON.stringify(paymentData),
     });
     const data = await res.json();
-    // console.log(data);
     if (data?.url) {
       window.location.href = data.url;
     }
@@ -47,20 +47,20 @@ export default function BookingWidget({
 
   return (
     <Card className="glass border-white/5 sticky top-24" radius="lg">
-      {user?.role == "attendee" ? (
+      {user?.role === "attendee" ? (
         <div className="p-8 space-y-6">
           <h3 className="text-xl font-bold text-white">Booking Details</h3>
 
           {/* Stat list */}
           <div className="space-y-4">
             <div className="flex justify-between items-center text-sm">
-              <span className="text-slate-400">Ticket Price:</span>
+              <span className="text-slate-400"> Price:</span>
               <span className="text-pink-400 font-extrabold text-xl">
-                {ticketPrice === 0 ? "Free" : `$${ticketPrice?.toFixed(2)}`}
+                {safePrice === 0 ? "Free" : `$${safePrice.toFixed(2)}`}
               </span>
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-slate-400">Available Seats:</span>
+              <span className="text-slate-400">Available:</span>
               <span className="text-white font-bold">
                 {isSoldOut ? (
                   <span className="text-red-500 uppercase">Sold Out</span>
@@ -111,9 +111,9 @@ export default function BookingWidget({
           </div>
         </div>
       ) : (
-        <Card>
-          <p className="text-red-500">
-            {user?.role.toUpperCase()} can not book a event
+        <Card className="p-6 bg-slate-900/50 border border-white/5">
+          <p className="text-red-500 text-center font-medium">
+            {user?.role ? user.role.toUpperCase() : "GUEST"} cannot book 
           </p>
         </Card>
       )}
