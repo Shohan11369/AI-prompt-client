@@ -9,7 +9,7 @@ import { baseURL } from "@/lib/api/baseUrl";
 import BookingWidget from "@/components/BookingWidget";
 
 const fetchEvent = async (id) => {
-    // এখানে সার্ভার সাইড ক্যাশিং এড়াতে { cache: 'no-store' } যোগ করা ভালো
+    
     const res = await fetch(`${baseURL}/api/single-events/${id}`, { cache: 'no-store' });
     const data = await res.json();
     return data;
@@ -19,7 +19,7 @@ export default async function EventDetailsPage({ params }) {
     const { id } = await params;
     const event = await fetchEvent(id);
 
-    // ইমেজ সেফটি চেক (যদি ডাটাবেজে ইমেজ ফিল্ড খালি থাকে)
+  
     const eventImageUrl = event?.image && typeof event.image === 'string' && event.image.trim() !== ""
         ? event.image
         : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe";
