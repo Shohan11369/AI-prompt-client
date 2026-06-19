@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaTicketAlt, FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaRobot, FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -7,11 +7,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-2">
+           
             <div className="bg-gradient-to-tr from-pink-500 to-indigo-500 p-2 rounded-lg text-white">
-              <FaTicketAlt className="text-lg" />
+              <FaRobot className="text-lg" />
             </div>
-            <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-pink-500 bg-clip-text text-transparent">
-              Ticketo
+          
+            <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-pink-500 bg-clip-text text-transparent">
+              AI
             </span>
           </Link>
           <p className="text-slate-400 text-sm leading-relaxed">
@@ -26,12 +28,13 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Discover Events</h3>
+          <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Discover Tools</h3>
           <ul className="space-y-2 text-slate-400 text-sm">
-            <li><Link href="/events?category=Music" className="hover:text-white transition-colors">Music Festivals</Link></li>
-            <li><Link href="/events?category=Tech" className="hover:text-white transition-colors">Tech Conferences</Link></li>
-            <li><Link href="/events?category=Sports" className="hover:text-white transition-colors">Sports Matches</Link></li>
-            <li><Link href="/events?category=Arts" className="hover:text-white transition-colors">Art Exhibitions</Link></li>
+       
+            <li><Link href="/events?category=Productivity" className="hover:text-white transition-colors">Productivity</Link></li>
+            <li><Link href="/events?category=Design" className="hover:text-white transition-colors">AI Design Tools</Link></li>
+            <li><Link href="/events?category=Development" className="hover:text-white transition-colors">Development AI</Link></li>
+            <li><Link href="/events?category=Marketing" className="hover:text-white transition-colors">Marketing Automation</Link></li>
           </ul>
         </div>
 
@@ -57,7 +60,8 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 border-t border-white/5 mt-12 pt-8 text-center text-slate-500 text-xs">
-        <p>&copy; {new Date().getFullYear()} Ticketo Inc. All rights reserved. Developed by Antigravity AI.</p>
+        
+        <p>&copy; {new Date().getFullYear()} AI Inc. All rights reserved. Developed by Antigravity AI.</p>
       </div>
     </footer>
   );
