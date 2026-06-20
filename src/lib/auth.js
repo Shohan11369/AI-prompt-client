@@ -1,8 +1,8 @@
-import { betterAuth } from 'better-auth';
-import { mongodbAdapter } from 'better-auth/adapters/mongodb';
-import { MongoClient } from 'mongodb';
+import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { getMongoClient } from "@/lib/mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI);
+const client = getMongoClient();
 const db = client.db(process.env.DB_NAME);
 
 export const auth = betterAuth({
@@ -14,14 +14,15 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || 'placeholder-google-client-id',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'placeholder-google-client-secret',
+      clientId: process.env.GOOGLE_CLIENT_ID || "placeholder-google-client-id",
+      clientSecret:
+        process.env.GOOGLE_CLIENT_SECRET || "placeholder-google-client-secret",
     },
   },
   user: {
     additionalFields: {
       role: {
-        defaultValue: 'User',
+        defaultValue: "User",
       },
       isBlocked: {
         defaultValue: false,

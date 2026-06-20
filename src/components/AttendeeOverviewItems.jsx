@@ -24,7 +24,6 @@ export default function AttendeeOverviewItems({ initialUser, statsData }) {
     setIsSubmitting(true);
 
     try {
-      // 📝 আপনার ব্যাকএন্ড প্রোফাইল আপডেট API এর সাথে কানেক্ট করুন
       const res = await fetch("/api/user/update-profile", {
         method: "PUT",
         headers: {
@@ -33,13 +32,22 @@ export default function AttendeeOverviewItems({ initialUser, statsData }) {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
-        alert("Profile updated successfully! 🎉");
-      } else {
-        alert("Something went wrong. Please try again.");
+      // রেসপন্স ডাটা পার্স করা
+      const data = await res.json();
+
+      if (!res.ok) {
+        // সার্ভার থেকে আসা এরর মেসেজ দেখান
+        throw new Error(data.message || "Failed to update profile");
       }
+
+      // সফল হলে টোস্ট বা নোটিফিকেশন দেখান
+      console.log("Success:", data);
+      // toast.success("Profile updated successfully!"); 
+      
     } catch (error) {
       console.error("Error updating profile:", error);
+      // এখানে ইউজারের জন্য এরর মেসেজ দেখানোর ব্যবস্থা করুন
+      // toast.error(error.message);
     } finally {
       setIsSubmitting(false);
     }

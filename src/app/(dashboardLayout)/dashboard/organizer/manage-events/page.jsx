@@ -14,6 +14,8 @@ const ManageEvent = async () => {
     })
     const events = await myEvents(session?.user?.email)
 
+    console.log("Events from API:", events);
+
 
 
     return (
@@ -22,6 +24,7 @@ const ManageEvent = async () => {
                 title="Manage Event"
                 description="Manage event"
             />
+            
             <Suspense fallback={<Spinner />}>
                 <ManageEventClient events={events} />
             </Suspense>

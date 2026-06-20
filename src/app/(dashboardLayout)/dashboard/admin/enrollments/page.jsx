@@ -1,0 +1,226 @@
+import DashboardHeading from "@/components/DashboardHeading";
+import { getDb } from "@/lib/mongodb";
+import { getUser } from "@/lib/api/session";
+import { Card, Chip, Button } from "@heroui/react";
+import Link from "next/link";
+
+const statusStyles = {
+  approved: "bg-green-500/10 text-green-400 border-green-500/20",
+  rejected: "bg-red-500/10 text-red-400 border-red-500/20",
+  pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+};
+
+const normalizeStatus = (paymentStatus, approvalStatus) => {
+  if (approvalStatus) return approvalStatus;
+  if (!paymentStatus) return "pending";
+  if (paymentStatus === "failed") return "rejected";
+  if (paymentStatus === "paid" || paymentStatus === "succeeded")
+    return "approved";
+  return paymentStatus;
+};
+
+const AdminEnrollmentsPage = async () => {
+  const user = await getUser();
+  const db = await getDb();
+
+  const bookings = await db
+    .collection("bookings")
+    .find({})
+    .sort({ bookingDate: -1 })
+    .toArray();
+
+  const events = await db
+    .collection("events")
+    .find({})
+    .project({ _id: 1, title: 1, organizationEmail: 1 })
+    .toArray();
+
+  const users = await db
+    .collection("user")
+    .find({
+      email: {
+        $in: bookings.map((booking) => booking.attendeeEmail).filter(Boolean),
+      },
+    })
+    .project({ email: 1, name: 1 })
+    .toArray();
+
+  const eventMap = new Map(
+    events.map((event) => [event._id.toString(), event]),
+  );
+  const userMap = new Map(users.map((entry) => [entry.email, entry]));
+
+  const rows = bookings.map((booking) => {
+    const event = eventMap.get(booking.evetId);
+    const attendee = userMap.get(booking.attendeeEmail);
+
+    return {
+      id: booking._id.toString(),
+      attendeeName:
+        attendee?.name || booking.attendeeEmail?.split("@")[0] || "Unknown",
+      attendeeEmail: booking.attendeeEmail || "",
+      eventTitle: booking.eventTitle || event?.title || "Untitled Event",
+      organizerEmail: event?.organizationEmail || "",
+      quantity: Number(booking.quantity) || 0,
+      amount: Number(booking.amount) || 0,
+      status: normalizeStatus(booking.paymentStatus, booking.approvalStatus),
+      bookingDate: booking.bookingDate || booking.paidAt || new Date(),
+    };
+  });
+
+  return (
+    <div className="space-y-6 mt-6">
+      <DashboardHeading
+        title="All Enrollments"
+        description="Every payment booking from the database appears here"
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="glass border-white/5" radius="lg">
+          <div className="p-6">
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              Total Enrollments
+            </span>
+            <h2 className="text-3xl font-extrabold text-white">
+              {rows.length}
+            </h2>
+          </div>
+        </Card>
+        <Card className="glass border-white/5" radius="lg">
+          <div className="p-6">
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              Unique Attendees
+            </span>
+            <h2 className="text-3xl font-extrabold text-white">
+              {new Set(rows.map((row) => row.attendeeEmail)).size}
+            </h2>
+          </div>
+        </Card>
+        <Card className="glass border-white/5" radius="lg">
+          <div className="p-6">
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              Total Revenue
+            </span>
+            <h2 className="text-3xl font-extrabold text-white">
+              ${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}
+            </h2>
+          </div>
+        </Card>
+      </div>
+
+      <Card
+        className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
+        radius="lg"
+      >
+        <div className="p-0 overflow-x-auto">
+          <table className="w-full min-w-225 text-left border-collapse">
+            <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
+              <tr>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  ATTENDEE
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  EMAIL
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  EVENT
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  ORGANIZER
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  QUANTITY
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  PAID
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  STATUS
+                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+                  ACTIONS
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr
+                  key={row.id}
+                  className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0"
+                >
+                  <td className="py-4 px-6 align-middle font-bold text-white">
+                    {row.attendeeName}
+                  </td>
+                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
+                    {row.attendeeEmail}
+                  </td>
+                  <td className="py-4 px-6 align-middle text-pink-500 font-semibold">
+                    {row.eventTitle}
+                  </td>
+                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
+                    {row.organizerEmail || "-"}
+                  </td>
+                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
+                    {row.quantity} ticket(s)
+                  </td>
+                  <td className="py-4 px-6 align-middle font-semibold text-green-400">
+                    ${row.amount.toFixed(2)}
+                  </td>
+                  <td className="py-4 px-6 align-middle">
+                    <Chip
+                      size="sm"
+                      className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}
+                    >
+                      {row.status}
+                    </Chip>
+                  </td>
+                  <td className="py-4 px-6 align-middle min-w-64">
+                    <div className="flex flex-wrap gap-2 items-center">
+                      <Link href={`/dashboard/admin/enrollments/${row.id}`}>
+                        <Button
+                          size="sm"
+                          radius="full"
+                          className="bg-slate-500/10 text-slate-200 border border-white/10"
+                        >
+                          View
+                        </Button>
+                      </Link>
+                      <form
+                        action={`/api/admin/enrollments/${row.id}/status`}
+                        method="post"
+                        className="inline-flex"
+                      >
+                        <input type="hidden" name="status" value="approve" />
+                        <button
+                          type="submit"
+                          className="inline-flex items-center justify-center rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1.5 text-[12px] font-semibold text-green-400 hover:bg-green-500/20 transition-colors"
+                        >
+                          Approve
+                        </button>
+                      </form>
+                      <form
+                        action={`/api/admin/enrollments/${row.id}/status`}
+                        method="post"
+                        className="inline-flex"
+                      >
+                        <input type="hidden" name="status" value="reject" />
+                        <button
+                          type="submit"
+                          className="inline-flex items-center justify-center rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[12px] font-semibold text-red-400 hover:bg-red-500/20 transition-colors"
+                        >
+                          Reject
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default AdminEnrollmentsPage;
