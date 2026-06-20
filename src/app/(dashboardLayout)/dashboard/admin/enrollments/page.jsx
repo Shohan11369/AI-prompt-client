@@ -3,6 +3,7 @@ import { getDb } from "@/lib/mongodb";
 import { getUser } from "@/lib/api/session";
 import { Card, Chip, Button } from "@heroui/react";
 import Link from "next/link";
+import StatusActions from "@/components/StatusActions";
 
 const statusStyles = {
   approved: "bg-green-500/10 text-green-400 border-green-500/20",
@@ -10,13 +11,21 @@ const statusStyles = {
   pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
 };
 
+// const normalizeStatus = (paymentStatus, approvalStatus) => {
+//   if (approvalStatus) return approvalStatus;
+//   if (!paymentStatus) return "pending";
+//   if (paymentStatus === "failed") return "rejected";
+//   if (paymentStatus === "paid" || paymentStatus === "succeeded")
+//     return "approved";
+//   return paymentStatus;
+// };
+
 const normalizeStatus = (paymentStatus, approvalStatus) => {
+ 
   if (approvalStatus) return approvalStatus;
-  if (!paymentStatus) return "pending";
-  if (paymentStatus === "failed") return "rejected";
-  if (paymentStatus === "paid" || paymentStatus === "succeeded")
-    return "approved";
-  return paymentStatus;
+  
+
+  return "pending";
 };
 
 const AdminEnrollmentsPage = async () => {
@@ -175,42 +184,8 @@ const AdminEnrollmentsPage = async () => {
                     </Chip>
                   </td>
                   <td className="py-4 px-6 align-middle min-w-64">
-                    <div className="flex flex-wrap gap-2 items-center">
-                      <Link href={`/dashboard/admin/enrollments/${row.id}`}>
-                        <Button
-                          size="sm"
-                          radius="full"
-                          className="bg-slate-500/10 text-slate-200 border border-white/10"
-                        >
-                          View
-                        </Button>
-                      </Link>
-                      <form
-                        action={`/api/admin/enrollments/${row.id}/status`}
-                        method="post"
-                        className="inline-flex"
-                      >
-                        <input type="hidden" name="status" value="approve" />
-                        <button
-                          type="submit"
-                          className="inline-flex items-center justify-center rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1.5 text-[12px] font-semibold text-green-400 hover:bg-green-500/20 transition-colors"
-                        >
-                          Approve
-                        </button>
-                      </form>
-                      <form
-                        action={`/api/admin/enrollments/${row.id}/status`}
-                        method="post"
-                        className="inline-flex"
-                      >
-                        <input type="hidden" name="status" value="reject" />
-                        <button
-                          type="submit"
-                          className="inline-flex items-center justify-center rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[12px] font-semibold text-red-400 hover:bg-red-500/20 transition-colors"
-                        >
-                          Reject
-                        </button>
-                      </form>
+                    <div className="flex gap-2">
+                      <StatusActions id={row.id} />
                     </div>
                   </td>
                 </tr>

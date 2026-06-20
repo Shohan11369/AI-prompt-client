@@ -6,38 +6,36 @@ import { revalidatePath } from "next/cache";
 export async function POST(request, { params }) {
   try {
     const user = await getUser();
-
     if (!user?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const formData = await request.formData();
-    const status = formData.get("status");
+    // ভুল এখানে ছিল: formData এর বদলে json() ব্যবহার করুন
+    const body = await request.json(); 
+    const { status } = body;
+
     const result = await updateBookingStatus({
-      bookingId: params.bookingId,
+      bookingId: params.id, // আপনার ফোল্ডার স্ট্রাকচার [id] হলে params.id হবে
       status,
     });
 
     if (!result?.modifiedCount) {
       return NextResponse.json(
-        { message: "Booking not found or not allowed" },
+        { message: "Booking not found or update failed" },
         { status: 404 },
       );
     }
 
+    // রিভ্যালিডেশন
     revalidatePath("/dashboard/admin/enrollments");
-    revalidatePath("/dashboard/organizer");
-    revalidatePath("/dashboard/organizer/attendees");
-    revalidatePath("/dashboard/attendee");
-    revalidatePath("/dashboard/attendee/tickets");
-    revalidatePath("/dashboard/attendee/payments");
+    
+    // রিডাইরেক্টের বদলে JSON রেসপন্স পাঠান
+    return NextResponse.json({ success: true, message: "Status updated" });
 
-    const referer =
-      request.headers.get("referer") || "/dashboard/admin/enrollments";
-    return NextResponse.redirect(new URL(referer, request.url));
   } catch (error) {
+    console.error("API Error:", error);
     return NextResponse.json(
-      { message: "Failed to update booking status", error: error.message },
+      { message: "Failed to update", error: error.message },
       { status: 500 },
     );
   }
