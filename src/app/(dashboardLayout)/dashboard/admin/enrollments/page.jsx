@@ -1,8 +1,7 @@
 import DashboardHeading from "@/components/DashboardHeading";
 import { getDb } from "@/lib/mongodb";
 import { getUser } from "@/lib/api/session";
-import { Card, Chip, Button } from "@heroui/react";
-import Link from "next/link";
+import { Card, Chip } from "@heroui/react";
 import StatusActions from "@/components/StatusActions";
 
 const statusStyles = {
@@ -11,20 +10,8 @@ const statusStyles = {
   pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
 };
 
-// const normalizeStatus = (paymentStatus, approvalStatus) => {
-//   if (approvalStatus) return approvalStatus;
-//   if (!paymentStatus) return "pending";
-//   if (paymentStatus === "failed") return "rejected";
-//   if (paymentStatus === "paid" || paymentStatus === "succeeded")
-//     return "approved";
-//   return paymentStatus;
-// };
-
 const normalizeStatus = (paymentStatus, approvalStatus) => {
- 
   if (approvalStatus) return approvalStatus;
-  
-
   return "pending";
 };
 
@@ -32,12 +19,20 @@ const AdminEnrollmentsPage = async () => {
   const user = await getUser();
   const db = await getDb();
 
+  // Role check kore query build kora
+  let query = {};
+  if (user?.role === "attendee") {
+    // Attendee hole shudhu tar email er booking gulo dekhabe
+    query = { attendeeEmail: user?.email };
+  } 
+  // Admin ba Organizer hole query {} thakbe, mane shob dekhabe
+
   const bookings = await db
     .collection("bookings")
-    .find({})
+    .find(query) // Query-ti ekhane boshabo
     .sort({ bookingDate: -1 })
     .toArray();
-
+    
   const events = await db
     .collection("events")
     .find({})
@@ -84,35 +79,24 @@ const AdminEnrollmentsPage = async () => {
         description="Every payment booking from the database appears here"
       />
 
+      {/* Stats Cards (Same as before) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="glass border-white/5" radius="lg">
           <div className="p-6">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
-              Total Enrollments
-            </span>
-            <h2 className="text-3xl font-extrabold text-white">
-              {rows.length}
-            </h2>
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
+            <h2 className="text-3xl font-extrabold text-white">{rows.length}</h2>
           </div>
         </Card>
         <Card className="glass border-white/5" radius="lg">
           <div className="p-6">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
-              Unique Attendees
-            </span>
-            <h2 className="text-3xl font-extrabold text-white">
-              {new Set(rows.map((row) => row.attendeeEmail)).size}
-            </h2>
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
+            <h2 className="text-3xl font-extrabold text-white">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
           </div>
         </Card>
         <Card className="glass border-white/5" radius="lg">
           <div className="p-6">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
-              Total Revenue
-            </span>
-            <h2 className="text-3xl font-extrabold text-white">
-              ${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}
-            </h2>
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Revenue</span>
+            <h2 className="text-3xl font-extrabold text-white">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
           </div>
         </Card>
       </div>
@@ -125,68 +109,37 @@ const AdminEnrollmentsPage = async () => {
           <table className="w-full min-w-225 text-left border-collapse">
             <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
               <tr>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  ATTENDEE
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  EMAIL
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  EVENT
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  ORGANIZER
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  QUANTITY
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  PAID
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  STATUS
-                </th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
-                  ACTIONS
-                </th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ATTENDEE</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">EMAIL</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">EVENT</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ORGANIZER</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">QUANTITY</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">PAID</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0"
-                >
-                  <td className="py-4 px-6 align-middle font-bold text-white">
-                    {row.attendeeName}
-                  </td>
-                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
-                    {row.attendeeEmail}
-                  </td>
-                  <td className="py-4 px-6 align-middle text-pink-500 font-semibold">
-                    {row.eventTitle}
-                  </td>
-                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
-                    {row.organizerEmail || "-"}
-                  </td>
-                  <td className="py-4 px-6 align-middle text-slate-300 font-medium">
-                    {row.quantity} ticket(s)
-                  </td>
-                  <td className="py-4 px-6 align-middle font-semibold text-green-400">
-                    ${row.amount.toFixed(2)}
-                  </td>
-                  <td className="py-4 px-6 align-middle">
-                    <Chip
-                      size="sm"
-                      className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}
-                    >
+                <tr key={row.id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150">
+                  <td className="py-4 px-6 font-bold text-white">{row.attendeeName}</td>
+                  <td className="py-4 px-6 text-slate-300">{row.attendeeEmail}</td>
+                  <td className="py-4 px-6 text-pink-500 font-semibold">{row.eventTitle}</td>
+                  <td className="py-4 px-6 text-slate-300">{row.organizerEmail || "-"}</td>
+                  <td className="py-4 px-6 text-slate-300">{row.quantity} ticket(s)</td>
+                  <td className="py-4 px-6 font-semibold text-green-400">${row.amount.toFixed(2)}</td>
+                  <td className="py-4 px-6">
+                    <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}>
                       {row.status}
                     </Chip>
                   </td>
-                  <td className="py-4 px-6 align-middle min-w-64">
-                    <div className="flex gap-2">
+                  <td className="py-4 px-6 min-w-64">
+                    {/* কন্ডিশনাল রেন্ডারিং: শুধুমাত্র অ্যাডমিন বা অর্গানাইজার বাটন দেখবে */}
+                    {(user?.role === "admin" || user?.role === "organizer") ? (
                       <StatusActions id={row.id} />
-                    </div>
+                    ) : (
+                      <span className="text-slate-600 text-xs italic">Read only</span>
+                    )}
                   </td>
                 </tr>
               ))}

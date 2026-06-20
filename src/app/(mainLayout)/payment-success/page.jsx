@@ -2,11 +2,11 @@ import { baseURL } from "@/lib/api/baseUrl";
 import { stripe } from "@/lib/stripe";
 import { Button, Card, CardFooter, CardHeader } from "@heroui/react";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
-import { FaArrowRight, FaCheckCircle, FaCrown } from "react-icons/fa";
+import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
+import { handlePaymentSuccessRedirect } from "@/app/actions"; // নতুন অ্যাকশন ইমপোর্ট করুন
+
 export default async function PaymentSuccess({ searchParams }) {
   const { session_id } = await searchParams;
-  // console.log(session_id);
 
   if (!session_id)
     throw new Error("Please provide a valid session_id (`cs_test_...`)");
@@ -14,6 +14,7 @@ export default async function PaymentSuccess({ searchParams }) {
   const session = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ["line_items", "payment_intent"],
   });
+
   const paymentData = {
     amount: session?.metadata?.amount,
     evetId: session?.metadata?.eventId,
@@ -24,26 +25,20 @@ export default async function PaymentSuccess({ searchParams }) {
     transactionId: session?.payment_intent?.id,
     paymentStatus: session?.payment_status,
   };
-  // console.log(paymentData);
 
   const res = await fetch(`${baseURL}/api/events/booking`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(paymentData),
+    cache: "no-store", // ডাটা ফ্রেশ রাখার জন্য
   });
-  const data = await res.json();
 
+  // সফল হলে সার্ভার অ্যাকশন কল করুন
   if (res.ok) {
-    revalidatePath("/dashboard/organizer");
-    revalidatePath("/dashboard/organizer/manage-events");
-    revalidatePath("/dashboard/organizer/attendees");
-    revalidatePath("/dashboard/attendee");
-    revalidatePath("/dashboard/attendee/tickets");
-    revalidatePath("/dashboard/attendee/payments");
+    await handlePaymentSuccessRedirect();
   }
 
+  // যদি res.ok না হয়, তবে নিচে নিচের UI দেখাবে
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-[#080c16] px-6 py-12">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950 -z-10" />

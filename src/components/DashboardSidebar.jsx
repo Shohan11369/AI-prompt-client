@@ -72,6 +72,13 @@ const DashboardSideBar = () => {
       icon: FaHistory,
       href: "/dashboard/attendee/payments",
     },
+
+    {
+      key: "enrollments",
+      label: "Enrollments",
+      icon: FaTicketAlt,
+      href: "/dashboard/admin/enrollments",
+    },
   ];
 
   const adminMenu = [
