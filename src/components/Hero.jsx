@@ -1,25 +1,23 @@
-
-
 "use client";
 import { Button } from "@heroui/react";
 import Link from "next/link";
-import { FaRocket } from "react-icons/fa";
-import { motion } from "motion/react"
+import { FaRobot } from "react-icons/fa";
+import { motion } from "motion/react";
+
 const Hero = () => {
     return (
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-indigo-600/15 via-slate-950 to-slate-950 -z-10" />
-            <div className="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-pink-500/10 to-indigo-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 -z-10" />
+            <div className="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 -z-10" />
 
             <div className="max-w-5xl text-center space-y-8">
                 <motion.div
-
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/5 text-pink-400 text-xs font-semibold uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-xs font-semibold uppercase tracking-wider"
                 >
-                    <FaRocket /> Introducing Ticketo v2.0
+                    <FaRobot /> The Future of Prompt Engineering
                 </motion.div>
 
                 <motion.h1
@@ -28,11 +26,10 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight"
                 >
-                    Discover Premium Events &{" "}
-                    <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-                        Book Tickets
+                    Unlock the Power of AI with {" "}
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                        Mastered Prompts
                     </span>{" "}
-                    Seamlessly
                 </motion.h1>
 
                 <motion.p
@@ -41,7 +38,7 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     className="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
                 >
-                    Ticketo links passionate organizers with eager attendees. Browse local festivals, grand music nights, elite business seminars, and everything in between.
+                    Access thousands of expert-crafted prompts for ChatGPT, Midjourney, and Claude. Elevate your workflow, generate stunning visuals, and achieve professional results instantly.
                 </motion.p>
 
                 <motion.div
@@ -50,21 +47,21 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     className="flex flex-col sm:flex-row justify-center items-center gap-4"
                 >
-                    <Link href="/events">
+                    <Link href="/browse-prompts">
                         <Button
-                            className="bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-bold h-14 px-8 text-md shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 transition-all w-full sm:w-auto"
+                            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold h-14 px-8 text-md shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all w-full sm:w-auto"
                             radius="full"
                         >
-                            Explore Events
+                            Browse Prompts
                         </Button>
                     </Link>
-                    <Link href="/">
+                    <Link href="/sell-your-prompts">
                         <Button
                             variant="bordered"
                             className="border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold h-14 px-8 text-md w-full sm:w-auto border-2"
                             radius="full"
                         >
-                            Create Organization
+                            Become a Creator
                         </Button>
                     </Link>
                 </motion.div>
