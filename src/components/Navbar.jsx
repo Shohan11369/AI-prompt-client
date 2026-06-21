@@ -32,7 +32,7 @@ export default function Navbar() {
     await authClient.signOut();
     router.push("/");
   };
-  // console.log(session);
+
 
 
   return (
@@ -53,7 +53,7 @@ export default function Navbar() {
             href="/events"
             className={`text-sm font-medium transition-colors ${pathname.startsWith("/events") ? "text-pink-500 font-semibold" : "text-slate-300 hover:text-white"}`}
           >
-            Browse Events
+            All AI Prompt
           </Link>
           {session && session?.user && (
             <Link
@@ -82,7 +82,7 @@ export default function Navbar() {
                 href="/register"
                 className="inline-flex items-center justify-center font-semibold text-xs bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-lg shadow-pink-500/10 hover:shadow-pink-500/20 transition h-9 px-4 rounded-xl"
               >
-                Sign Up
+                Register
               </Link>
             </div>
           )}

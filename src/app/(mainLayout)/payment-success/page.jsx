@@ -3,7 +3,7 @@ import { stripe } from "@/lib/stripe";
 import { Button, Card, CardFooter, CardHeader } from "@heroui/react";
 import Link from "next/link";
 import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
-import { handlePaymentSuccessRedirect } from "@/app/actions"; // নতুন অ্যাকশন ইমপোর্ট করুন
+import { handlePaymentSuccessRedirect } from "@/app/actions"; 
 
 export default async function PaymentSuccess({ searchParams }) {
   const { session_id } = await searchParams;
