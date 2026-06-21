@@ -85,6 +85,14 @@ export default async function EventDetailsPage({ params }) {
                         </p>
                     </div>
 
+                    {/* New Interaction Features Section */}
+                    <div className="mt-8">
+                        {(() => {
+                            const PromptActions = require("@/components/interactions/PromptActions").default;
+                            return <PromptActions prompt={event} />;
+                        })()}
+                    </div>
+
                     {/* Organizer Info */}
                     <div className="space-y-4">
                         <h2 className="text-2xl font-bold text-white">Visibility- <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/5 text-pink-400 text-xs font-semibold uppercase tracking-wider">{event?.visibility || "Public"}</span> </h2>

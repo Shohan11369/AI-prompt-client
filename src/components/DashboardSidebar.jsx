@@ -27,6 +27,12 @@ const DashboardSideBar = () => {
       href: "/dashboard/organizer",
     },
     {
+      key: "profile",
+      label: "Profile",
+      icon: FaUserCircle,
+      href: "/dashboard/profile",
+    },
+    {
       key: "organization",
       label: "Organization",
       icon: FaBuilding,
@@ -61,6 +67,12 @@ const DashboardSideBar = () => {
       href: "/dashboard/attendee",
     },
     {
+      key: "profile",
+      label: "Profile",
+      icon: FaUserCircle,
+      href: "/dashboard/profile",
+    },
+    {
       key: "tickets",
       label: "My Booked",
       icon: FaTicketAlt,
@@ -71,6 +83,18 @@ const DashboardSideBar = () => {
       label: "Payments",
       icon: FaHistory,
       href: "/dashboard/attendee/payments",
+    },
+    {
+      key: "saved-prompts",
+      label: "Saved Prompts",
+      icon: FaUserShield,
+      href: "/dashboard/attendee/saved-prompts",
+    },
+    {
+      key: "my-reviews",
+      label: "My Reviews",
+      icon: FaUserCircle,
+      href: "/dashboard/attendee/my-reviews",
     },
 
     {
@@ -87,6 +111,12 @@ const DashboardSideBar = () => {
       label: "Users",
       icon: FaUserShield,
       href: "/dashboard/users",
+    },
+    {
+      key: "profile",
+      label: "Profile",
+      icon: FaUserCircle,
+      href: "/dashboard/profile",
     },
     {
       key: "events",

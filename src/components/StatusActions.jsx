@@ -6,9 +6,9 @@ export default function StatusActions({ id }) {
   const router = useRouter();
 
   const updateStatus = async (status) => {
-    // এখানে আপনার সার্ভারের পোর্ট (যেমন: 5000) নিশ্চিত করুন
+  
     const res = await fetch(`http://localhost:8000/api/admin/enrollments/${id}/status`, {
-      method: "PATCH", // সার্ভারের সাথে মিল রেখে PATCH করা হয়েছে
+      method: "PATCH", 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     });

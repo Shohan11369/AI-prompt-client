@@ -1,7 +1,7 @@
 import FeaturedEvents from "@/components/FeaturedEvents";
 import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
-import Testimonials from "@/components/Testimonials";
+import HomepageDynamicTestimonials from "@/components/interactions/HomepageDynamicTestimonials";
 import TopOrganizers from "@/components/TopOrganizers";
 import WhyChoose from "@/components/WhyChoose";
 import { baseURL } from "@/lib/api/baseUrl";
@@ -39,7 +39,7 @@ export default async function HomePage() {
       {/* 💡 ফিক্সড: ডাটাবেজের ডেটা প্রোপস হিসেবে পাস করা হলো */}
       <TopOrganizers featuredOrgs={homeEventsData} />
 
-      <Testimonials />
+      <HomepageDynamicTestimonials />
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function EventCard({ event }) {
 
   const currentItem = event;
 
-  // ইমেজ ভ্যালিডেশন চেক এবং ফলব্যাক ইউআরএল
+ 
   const hasValidImage = currentItem?.image && 
     typeof currentItem.image === 'string' && 
     (currentItem.image.startsWith("http://") || 
@@ -19,7 +19,7 @@ export default function EventCard({ event }) {
     ? currentItem.image 
     : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe";
 
-  // 💡 টিকিট প্রাইস সেফটি চেক
+
   const price = typeof currentItem?.ticketPrice === 'number' ? currentItem.ticketPrice : Number(currentItem?.ticketPrice) || 0;
 
   return (
@@ -27,7 +27,7 @@ export default function EventCard({ event }) {
       className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden"
       radius="lg"
     >
-      {/* ইমেজ সেকশন */}
+    
       <div className="relative h-48 w-full overflow-hidden bg-slate-950">
         <Image
           src={imageUrl}
@@ -41,7 +41,7 @@ export default function EventCard({ event }) {
         </span>
       </div>
 
-      {/* কন্টেন্ট সেকশন */}
+      {/* content */}
       <div className="p-6 flex-grow space-y-4">
         <h3 className="text-xl font-bold text-white hover:text-pink-500 transition-colors line-clamp-1">
           {currentItem?.title}
@@ -65,7 +65,7 @@ export default function EventCard({ event }) {
         </div>
       </div>
 
-      {/* ফুটার সেকশন (রেটিং, কপি কাউন্ট, প্রাইস এবং বাটন) */}
+     
       <div className="px-6 pb-6 pt-4 flex justify-between items-center border-t border-white/5 mt-auto bg-slate-950/20">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
@@ -76,9 +76,9 @@ export default function EventCard({ event }) {
             <FaCopy />
             <span>{currentItem?.copyCount || 0} uses</span>
           </div>
-          {/* 💡 নতুন সংযোজিত প্রাইস ট্যাগ */}
-          <div className="flex items-center gap-1.5 text-pink-400 font-extrabold text-sm mt-0.5">
-            <FaTag className="text-pink-500/70 text-xs" />
+     
+          <div className="flex items-center gap-1.5 text-white font-extrabold text-lg mt-0.5">
+            <FaTag className="text-white text-lg" />
             <span>{price === 0 ? "Free" : `$${price.toFixed(2)}`}</span>
           </div>
         </div>
