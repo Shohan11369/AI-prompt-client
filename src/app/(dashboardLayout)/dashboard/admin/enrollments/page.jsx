@@ -18,18 +18,11 @@ const normalizeStatus = (paymentStatus, approvalStatus) => {
 const AdminEnrollmentsPage = async () => {
   const user = await getUser();
   const db = await getDb();
-
-  // Role check kore query build kora
-  let query = {};
-  if (user?.role === "attendee") {
-    // Attendee hole shudhu tar email er booking gulo dekhabe
-    query = { attendeeEmail: user?.email };
-  } 
-  // Admin ba Organizer hole query {} thakbe, mane shob dekhabe
-
+  
+  // Admin sees all bookings
   const bookings = await db
     .collection("bookings")
-    .find(query) // Query-ti ekhane boshabo
+    .find({})
     .sort({ bookingDate: -1 })
     .toArray();
     
@@ -38,7 +31,7 @@ const AdminEnrollmentsPage = async () => {
     .find({})
     .project({ _id: 1, title: 1, organizationEmail: 1 })
     .toArray();
-
+    
   const users = await db
     .collection("user")
     .find({
@@ -53,11 +46,10 @@ const AdminEnrollmentsPage = async () => {
     events.map((event) => [event._id.toString(), event]),
   );
   const userMap = new Map(users.map((entry) => [entry.email, entry]));
-
+  
   const rows = bookings.map((booking) => {
     const event = eventMap.get(booking.evetId);
     const attendee = userMap.get(booking.attendeeEmail);
-
     return {
       id: booking._id.toString(),
       attendeeName:
@@ -78,26 +70,20 @@ const AdminEnrollmentsPage = async () => {
         title="All Enrollments"
         description="Every payment booking from the database appears here"
       />
-
-      {/* Stats Cards (Same as before) */}
+      
+      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="glass border-white/5" radius="lg">
-          <div className="p-6">
+        <Card className="glass border-white/5 p-6" radius="lg">
             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
             <h2 className="text-3xl font-extrabold text-white">{rows.length}</h2>
-          </div>
         </Card>
-        <Card className="glass border-white/5" radius="lg">
-          <div className="p-6">
+        <Card className="glass border-white/5 p-6" radius="lg">
             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
             <h2 className="text-3xl font-extrabold text-white">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
-          </div>
         </Card>
-        <Card className="glass border-white/5" radius="lg">
-          <div className="p-6">
+        <Card className="glass border-white/5 p-6" radius="lg">
             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Revenue</span>
             <h2 className="text-3xl font-extrabold text-white">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
-          </div>
         </Card>
       </div>
 
@@ -106,17 +92,16 @@ const AdminEnrollmentsPage = async () => {
         radius="lg"
       >
         <div className="p-0 overflow-x-auto">
-          <table className="w-full min-w-225 text-left border-collapse">
+          <table className="w-full min-w-[800px] text-left border-collapse">
             <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
               <tr>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ATTENDEE</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">EMAIL</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">EVENT</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ORGANIZER</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">QUANTITY</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">PAID</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ACTIONS</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ATTENDEE</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EMAIL</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EVENT</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ORGANIZER</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">PAID</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">STATUS</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -126,19 +111,15 @@ const AdminEnrollmentsPage = async () => {
                   <td className="py-4 px-6 text-slate-300">{row.attendeeEmail}</td>
                   <td className="py-4 px-6 text-pink-500 font-semibold">{row.eventTitle}</td>
                   <td className="py-4 px-6 text-slate-300">{row.organizerEmail || "-"}</td>
-                  <td className="py-4 px-6 text-slate-300">{row.quantity} ticket(s)</td>
                   <td className="py-4 px-6 font-semibold text-green-400">${row.amount.toFixed(2)}</td>
                   <td className="py-4 px-6">
                     <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}>
                       {row.status}
                     </Chip>
                   </td>
-                  <td className="py-4 px-6 min-w-64">
-                    {/* কন্ডিশনাল রেন্ডারিং: শুধুমাত্র অ্যাডমিন বা অর্গানাইজার বাটন দেখবে */}
-                    {(user?.role === "admin" || user?.role === "organizer") ? (
+                  <td className="py-4 px-6">
+                    {(user.role === "admin" || user.role === "organizer") && (
                       <StatusActions id={row.id} />
-                    ) : (
-                      <span className="text-slate-600 text-xs italic">Read only</span>
                     )}
                   </td>
                 </tr>
@@ -150,5 +131,4 @@ const AdminEnrollmentsPage = async () => {
     </div>
   );
 };
-
 export default AdminEnrollmentsPage;

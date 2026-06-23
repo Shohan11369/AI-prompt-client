@@ -13,6 +13,7 @@ import {
   FaUserCircle,
   FaUsers,
   FaUserShield,
+  FaFileAlt,
 } from "react-icons/fa";
 
 const DashboardSideBar = () => {
@@ -50,12 +51,32 @@ const DashboardSideBar = () => {
       icon: FaCalendarAlt,
       href: "/dashboard/organizer/manage-events",
     },
-    
+  ];
+
+  const creatorMenu = [
     {
-      key: "enrollments",
-      label: "Enrollments",
-      icon: FaTicketAlt,
-      href: "/dashboard/admin/enrollments",
+      key: "overview",
+      label: "Overview",
+      icon: FaUsers,
+      href: "/dashboard/creator",
+    },
+    {
+      key: "profile",
+      label: "Profile",
+      icon: FaUserCircle,
+      href: "/dashboard/profile",
+    },
+    {
+      key: "add-prompt",
+      label: "Add Prompt",
+      icon: FaPlus,
+      href: "/dashboard/creator/add-prompt",
+    },
+    {
+      key: "my-prompts",
+      label: "My Prompts",
+      icon: FaCalendarAlt,
+      href: "/dashboard/creator/my-prompts",
     },
   ];
 
@@ -107,34 +128,40 @@ const DashboardSideBar = () => {
 
   const adminMenu = [
     {
+      key: "overview",
+      label: "Overview",
+      icon: FaUsers,
+      href: "/dashboard/admin",
+    },
+    {
       key: "users",
       label: "Users",
       icon: FaUserShield,
-      href: "/dashboard/users",
+      href: "/dashboard/admin/users",
     },
     {
-      key: "profile",
-      label: "Profile",
-      icon: FaUserCircle,
-      href: "/dashboard/profile",
+      key: "prompts",
+      label: "All Prompts",
+      icon: FaFileAlt,
+      href: "/dashboard/admin/prompts",
     },
     {
-      key: "events",
-      label: "Approve Events",
-      icon: FaCalendarAlt,
-      href: "/dashboard/events",
+      key: "payments",
+      label: "All Payments",
+      icon: FaHistory,
+      href: "/dashboard/admin/payments",
     },
     {
       key: "enrollments",
       label: "Enrollments",
-      icon: FaUsers,
+      icon: FaTicketAlt,
       href: "/dashboard/admin/enrollments",
     },
     {
-      key: "transactions",
-      label: "Transaction Logs",
-      icon: FaHistory,
-      href: "/dashboard/transactions",
+      key: "reported-prompts",
+      label: "Reported Prompts",
+      icon: FaUserCircle,
+      href: "/dashboard/admin/reported-prompts",
     },
   ];
 
@@ -143,11 +170,13 @@ const DashboardSideBar = () => {
   const manuItems =
     role === "organizer"
       ? orgnaizerMenu
-      : role === "attendee"
-        ? attendeeMenu
-        : role === "admin"
-          ? adminMenu
-          : null;
+      : role === "creator"
+        ? creatorMenu
+        : role === "attendee"
+          ? attendeeMenu
+          : role === "admin"
+            ? adminMenu
+            : null;
 
   return (
     <aside className="w-64 h-screen border-r border-white/5">
