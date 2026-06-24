@@ -69,8 +69,8 @@ const OrganizerOverviewPage = async () => {
                 {stats.uniqueAttendees}
               </h2>
             </div>
-            <div className="p-3.5 bg-green-500/10 text-green-400 rounded-2xl border border-green-500/20">
-              <FaDollarSign size={24} />
+            <div className="p-3.5 bg-blue-500/10 text-blue-400 rounded-2xl border border-blue-500/20">
+              <FaUsers size={24} />
             </div>
           </div>
         </Card>

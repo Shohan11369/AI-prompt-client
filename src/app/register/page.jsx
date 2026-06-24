@@ -37,9 +37,10 @@ export default function RegisterPage() {
         })
 
         // console.log(signUpData, signUpError);
+        console.log("SignUp Error:", signUpError);
 
         if (signUpError) {
-            toast.error("Registration not succeed...")
+            toast.error(signUpError.message || "Registration not succeed...")
         }
         else {
             redirect("/")

@@ -9,6 +9,7 @@ import { FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
 import Logo from "@/components/Logo";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 
 const LoginPage = () => {
@@ -24,7 +25,7 @@ const LoginPage = () => {
         console.log(signInData, signInError);
 
         if (signInError) {
-            toast.error("Registration not succeed...")
+            toast.error("Sign-in failed...")
         }
         else {
             redirect("/")

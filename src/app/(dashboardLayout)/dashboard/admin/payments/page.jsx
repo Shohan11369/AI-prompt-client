@@ -1,11 +1,50 @@
 import { Card, Table, TableContent, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react";
 import DashboardHeading from "@/components/DashboardHeading";
+import { getDb } from "@/lib/mongodb";
 
-const AdminPaymentsPage = () => {
-    const payments = [
-        { _id: "pay1", user: "John Doe", amount: 49.00, status: "completed" },
-        { _id: "pay2", user: "Jane Smith", amount: 15.00, status: "pending" },
-    ];
+const normalizeStatus = (paymentStatus, approvalStatus) => {
+  if (approvalStatus) return approvalStatus;
+  return paymentStatus || "pending";
+};
+
+const AdminPaymentsPage = async () => {
+    const db = await getDb();
+
+    // Admin sees all bookings (which represent payments)
+    const bookings = await db
+        .collection("bookings")
+        .find({})
+        .sort({ bookingDate: -1 })
+        .toArray();
+
+    const events = await db
+        .collection("events")
+        .find({})
+        .project({ _id: 1, title: 1 })
+        .toArray();
+
+    const users = await db
+        .collection("user")
+        .find({})
+        .project({ email: 1, name: 1 })
+        .toArray();
+
+    const eventMap = new Map(events.map((event) => [event._id.toString(), event.title]));
+    const userMap = new Map(users.map((user) => [user.email, user.name]));
+
+    const payments = bookings.map((booking) => {
+        const eventTitle = eventMap.get(booking.evetId || booking.eventId) || booking.eventTitle || "Untitled Event";
+        const userName = userMap.get(booking.attendeeEmail) || booking.attendeeEmail || "Unknown";
+        
+        return {
+            _id: booking._id.toString(),
+            user: userName,
+            event: eventTitle,
+            amount: Number(booking.amount) || 0,
+            status: normalizeStatus(booking.paymentStatus, booking.approvalStatus),
+            date: booking.bookingDate || booking.paidAt || new Date(),
+        };
+    });
 
     return (
         <div className="p-6 space-y-6">
@@ -15,15 +54,19 @@ const AdminPaymentsPage = () => {
                     <TableContent>
                         <TableHeader>
                             <TableColumn>USER</TableColumn>
+                            <TableColumn>EVENT</TableColumn>
                             <TableColumn>AMOUNT</TableColumn>
                             <TableColumn>STATUS</TableColumn>
+                            <TableColumn>DATE</TableColumn>
                         </TableHeader>
                         <TableBody>
-                            {payments.map(p => (
+                            {payments.map((p) => (
                                 <TableRow key={p._id}>
-                                    <TableCell>{p.user}</TableCell>
-                                    <TableCell>${p.amount.toFixed(2)}</TableCell>
+                                    <TableCell className="font-bold text-white">{p.user}</TableCell>
+                                    <TableCell className="text-pink-500 font-semibold">{p.event}</TableCell>
+                                    <TableCell className="font-semibold text-green-400">${p.amount.toFixed(2)}</TableCell>
                                     <TableCell>{p.status}</TableCell>
+                                    <TableCell>{new Date(p.date).toLocaleDateString()}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

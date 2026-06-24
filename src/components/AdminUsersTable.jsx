@@ -11,34 +11,7 @@ import {
   Chip
 } from "@heroui/react";
 
-const AdminUsersTable = () => {
-  const users = [
-    {
-      _id: "u1",
-      name: "John Doe",
-      email: "john@example.com",
-      role: "attendee",
-      isBlocked: false,
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=John"
-    },
-    {
-      _id: "u2",
-      name: "Organizer John",
-      email: "organizer@example.com",
-      role: "organizer",
-      isBlocked: false,
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Organizer"
-    },
-    {
-      _id: "u3",
-      name: "Banned User",
-      email: "banned@example.com",
-      role: "attendee",
-      isBlocked: true,
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Banned"
-    }
-  ];
-
+const AdminUsersTable = ({ users }) => {
   return (
     <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
@@ -53,7 +26,7 @@ const AdminUsersTable = () => {
             </TableHeader>
             <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">No users found</p>}>
               {users.map((usr) => (
-                <TableRow key={usr._id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0">
+                <TableRow key={usr._id.toString()} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0">
                   <TableCell className="py-4 px-6 align-middle text-slate-300">
                     <div className="h-10 w-10 relative">
                       <Image

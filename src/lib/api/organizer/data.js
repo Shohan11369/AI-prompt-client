@@ -38,8 +38,14 @@ export const getOrganizerAttendees = async (organizerEmail) => {
 
   if (!organizerEventIds.length) return [];
 
+  // Search for both 'evetId' and 'eventId' to be typo-tolerant
   const bookings = await bookingsCollection
-    .find({ evetId: { $in: organizerEventIds } })
+    .find({
+      $or: [
+        { evetId: { $in: organizerEventIds } },
+        { eventId: { $in: organizerEventIds } },
+      ],
+    })
     .sort({ bookingDate: -1 })
     .toArray();
 
@@ -56,7 +62,7 @@ export const getOrganizerAttendees = async (organizerEmail) => {
   const userMap = new Map(users.map((user) => [user.email, user]));
 
   return bookings.map((booking) => {
-    const relatedEvent = eventMap.get(booking.evetId);
+    const relatedEvent = eventMap.get(booking.evetId || booking.eventId);
     const attendee = userMap.get(booking.attendeeEmail);
 
     return {
@@ -73,7 +79,7 @@ export const getOrganizerAttendees = async (organizerEmail) => {
       status: resolveBookingStatus(booking),
       paymentStatus: booking.paymentStatus || "pending",
       approvalStatus: booking.approvalStatus || "",
-      eventId: booking.evetId,
+      eventId: booking.evetId || booking.eventId,
     };
   });
 };
@@ -102,7 +108,10 @@ export const updateOrganizerAttendeeStatus = async ({
     return { matchedCount: 0, modifiedCount: 0 };
   }
 
-  const relatedEvent = await eventsCollection.findOne({ _id: booking.evetId });
+  // Handle both field names for finding the related event
+  const eventIdInDb = booking.evetId || booking.eventId;
+  const relatedEvent = await eventsCollection.findOne({ _id: eventIdInDb });
+  
   if (!relatedEvent || relatedEvent.organizationEmail !== organizerEmail) {
     return { matchedCount: 0, modifiedCount: 0 };
   }
