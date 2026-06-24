@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, Button } from "@heroui/react";
-import { FaRegStar, FaCopy, FaRobot, FaEye, FaTag } from "react-icons/fa"; 
+import { FaCopy, FaRobot, FaUser } from "react-icons/fa"; 
 import Image from "next/image";
 
 export default function EventCard({ event }) {
@@ -8,7 +8,6 @@ export default function EventCard({ event }) {
 
   const currentItem = event;
 
- 
   const hasValidImage = currentItem?.image && 
     typeof currentItem.image === 'string' && 
     (currentItem.image.startsWith("http://") || 
@@ -18,9 +17,6 @@ export default function EventCard({ event }) {
   const imageUrl = hasValidImage 
     ? currentItem.image 
     : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe";
-
-
-  const price = typeof currentItem?.ticketPrice === 'number' ? currentItem.ticketPrice : Number(currentItem?.ticketPrice) || 0;
 
   return (
     <Card
@@ -41,7 +37,6 @@ export default function EventCard({ event }) {
         </span>
       </div>
 
-      {/* content */}
       <div className="p-6 flex-grow space-y-4">
         <h3 className="text-xl font-bold text-white hover:text-pink-500 transition-colors line-clamp-1">
           {currentItem?.title}
@@ -54,39 +49,23 @@ export default function EventCard({ event }) {
             <span>{currentItem?.aiTool || "N/A"}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-pink-500/80 font-semibold text-slate-300">Difficulty:</span>
-            <span className="capitalize">{currentItem?.difficulty || "Beginner"}</span>
+            <FaCopy className="text-pink-500/80 w-4 h-4" />
+            <span className="font-semibold text-slate-300">Copy Count:</span>
+            <span>{currentItem?.copyCount || 0}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaEye className="text-pink-500/80 w-4 h-4" />
-            <span className="font-semibold text-slate-300">Visibility:</span>
-            <span className="capitalize">{currentItem?.visibility || "Public"}</span>
+            <FaUser className="text-pink-500/80 w-4 h-4" />
+            <span className="font-semibold text-slate-300">Creator:</span>
+            <span>{currentItem?.creatorName || "Unknown"}</span>
           </div>
         </div>
       </div>
 
-     
-      <div className="px-6 pb-6 pt-4 flex justify-between items-center border-t border-white/5 mt-auto bg-slate-950/20">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
-            <FaRegStar />
-            <span>{typeof currentItem?.rating === 'number' ? currentItem.rating.toFixed(1) : "0.0"}</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-slate-400 text-xs">
-            <FaCopy />
-            <span>{currentItem?.copyCount || 0} uses</span>
-          </div>
-     
-          <div className="flex items-center gap-1.5 text-white font-extrabold text-lg mt-0.5">
-            <FaTag className="text-white text-lg" />
-            <span>{price === 0 ? "Free" : `$${price.toFixed(2)}`}</span>
-          </div>
-        </div>
-
+      <div className="px-6 pb-6 pt-4 border-t border-white/5 mt-auto bg-slate-950/20">
         <Link href={`/events/${currentItem?._id || currentItem?.id || ""}`}>
           <Button
             size="sm"
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold h-9 px-4 text-xs"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold h-9"
             disabled={!currentItem?._id && !currentItem?.id}
           >
             View Details

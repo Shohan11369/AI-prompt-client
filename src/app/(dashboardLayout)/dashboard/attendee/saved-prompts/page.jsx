@@ -2,6 +2,7 @@ import { getDb } from "@/lib/mongodb";
 import { getUser } from "@/lib/api/session";
 import { ObjectId } from "mongodb";
 import Link from "next/link";
+import CopyButton from "@/components/interactions/CopyButton";
 
 export default async function SavedPromptsPage() {
   const user = await getUser();
@@ -17,11 +18,11 @@ export default async function SavedPromptsPage() {
       {savedPrompts.length === 0 ? <p>No saved prompts.</p> : (
         <div className="space-y-4">
           {savedPrompts.map(p => (
-            <div key={p._id} className="p-4 border rounded flex justify-between">
+            <div key={p._id} className="p-4 border rounded flex justify-between items-center">
               <span>{p.title}</span>
               <div className="flex gap-2">
                 <Link href={`/events/${p._id}`} className="text-blue-500">View Details</Link>
-                {/* Add a remove bookmark button here */}
+                <CopyButton promptText={p.description || p.title} promptId={p._id.toString()} />
               </div>
             </div>
           ))}

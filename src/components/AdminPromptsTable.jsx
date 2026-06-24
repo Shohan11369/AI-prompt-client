@@ -1,19 +1,18 @@
 "use client";
 import {
-  Card,
-  Table,
-  TableContent,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
   Chip,
   Button,
   Input
 } from "@heroui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+
+const statusStyles = {
+  approved: "bg-green-500/10 text-green-400 border-green-500/20",
+  rejected: "bg-red-500/10 text-red-400 border-red-500/20",
+  pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+};
 
 const AdminPromptsTable = ({ prompts }) => {
   const router = useRouter();
@@ -22,60 +21,75 @@ const AdminPromptsTable = ({ prompts }) => {
   const handleAction = async (id, action) => {
     const feedback = feedbacks[id] || "";
     if (action === 'reject' && !feedback) {
-        alert("Please provide feedback for rejection.");
+        toast.error("Please provide feedback for rejection.");
         return;
     }
     
-    const res = await fetch(`/api/admin/prompts/${id}`, {
-      method: action === 'delete' ? 'DELETE' : 'POST',
-      body: JSON.stringify({ action, feedback }),
-    });
-    if (res.ok) {
-      router.refresh();
-      // Clear feedback for this prompt on success
-      setFeedbacks(prev => ({ ...prev, [id]: "" }));
+    try {
+        const res = await fetch(`/api/admin/prompts/${id}`, {
+          method: action === 'delete' ? 'DELETE' : 'POST',
+          body: JSON.stringify({ action, feedback }),
+        });
+        
+        if (res.ok) {
+          toast.success(`Prompt successfully ${action}ed.`);
+          router.refresh();
+          setFeedbacks(prev => ({ ...prev, [id]: "" }));
+        } else {
+            toast.error(`Failed to ${action} prompt.`);
+        }
+    } catch (error) {
+        toast.error(`An error occurred while ${action}ing the prompt.`);
     }
   };
 
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
-      <Table aria-label="Prompts table" removeWrapper>
-        <TableContent>
-          <TableHeader>
-            <TableColumn>TITLE</TableColumn>
-            <TableColumn>CREATOR</TableColumn>
-            <TableColumn>STATUS</TableColumn>
-            <TableColumn>FEEDBACK</TableColumn>
-            <TableColumn>ACTIONS</TableColumn>
-          </TableHeader>
-          <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">No prompts found</p>}>
-            {prompts.map((p) => (
-              <TableRow key={p._id.toString()}>
-                <TableCell>{p.title}</TableCell>
-                <TableCell>{p.creatorName || p.creatorEmail}</TableCell>
-                <TableCell>
-                  <Chip size="sm" className={p.status === 'approved' ? "bg-green-500/10 text-green-400" : "bg-yellow-500/10 text-yellow-400"}>{p.status || 'pending'}</Chip>
-                </TableCell>
-                <TableCell>
-                  <Input 
-                    size="sm"
-                    placeholder="Feedback..."
-                    value={feedbacks[p._id] || ""}
-                    onChange={(e) => setFeedbacks(prev => ({ ...prev, [p._id]: e.target.value }))}
-                  />
-                </TableCell>
-                <TableCell className="flex gap-2">
-                  <Button size="sm" color="success" onPress={() => handleAction(p._id, 'approve')}>Approve</Button>
-                  <Button size="sm" color="warning" onPress={() => handleAction(p._id, 'reject')}>Reject</Button>
-                  <Button size="sm" color="danger" onPress={() => handleAction(p._id, 'delete')}>Delete</Button>
-                  <Button size="sm" color="primary" onPress={() => handleAction(p._id, 'feature')}>Feature</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </TableContent>
-      </Table>
-    </Card>
+    <div className="p-0 overflow-x-auto">
+        <table className="w-full min-w-[800px] text-left border-collapse">
+            <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
+                <tr>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">TITLE</th>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">CREATOR</th>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">COPY COUNT</th>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">STATUS</th>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">FEEDBACK</th>
+                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {prompts.map((p) => (
+                <tr key={p._id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150">
+                    <td className="py-4 px-6 font-bold text-white">{p.title}</td>
+                    <td className="py-4 px-6 text-slate-300">{p.creatorName || p.organizationEmail}</td>
+                    <td className="py-4 px-6 text-slate-300">{p.copyCount || 0}</td>
+                    <td className="py-4 px-6">
+                        <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[p.status] || statusStyles.pending}`}>
+                            {p.status || 'pending'}
+                        </Chip>
+                    </td>
+                    <td className="py-4 px-6">
+                        <Input 
+                            size="sm"
+                            placeholder="Feedback..."
+                            value={feedbacks[p._id] || ""}
+                            onChange={(e) => setFeedbacks(prev => ({ ...prev, [p._id]: e.target.value }))}
+                            className="max-w-[200px]"
+                        />
+                    </td>
+                    <td className="py-4 px-6 flex gap-2">
+                      {p.status === 'pending' && (
+                        <>
+                          <Button size="sm" color="success" onPress={() => handleAction(p._id, 'approve')}>Approve</Button>
+                          <Button size="sm" color="warning" onPress={() => handleAction(p._id, 'reject')}>Reject</Button>
+                        </>
+                      )}
+                      <Button size="sm" color="danger" onPress={() => handleAction(p._id, 'delete')}>Delete</Button>
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
   );
 };
 

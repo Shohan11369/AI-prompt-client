@@ -51,6 +51,12 @@ const DashboardSideBar = () => {
       icon: FaCalendarAlt,
       href: "/dashboard/organizer/manage-events",
     },
+    {
+      key: "enrollments",
+      label: "Enrollments",
+      icon: FaTicketAlt,
+      href: "/dashboard/organizer/enrollments",
+    },
   ];
 
   const creatorMenu = [

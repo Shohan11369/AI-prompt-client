@@ -62,6 +62,8 @@ const AddEventPage = () => {
     delete data?.banner;
     const updateData = {
       ...data,
+      ticketPrice: Number(data.ticketPrice),
+      price: Number(data.ticketPrice), // Safe backup for any other components
       banner: imageUrl,
       organizationEmail: session.user.email,
     };
@@ -236,7 +238,7 @@ const AddEventPage = () => {
                     label="Ticket Price ($)"
                     labelPlacement="outside"
                     placeholder="0.00"
-                    {...register("price", {
+                    {...register("ticketPrice", {
                       required: "Price is required",
                       valueAsNumber: true,
                       min: {
@@ -246,9 +248,9 @@ const AddEventPage = () => {
                     })}
                   />
 
-                  {errors.price && (
+                  {errors.ticketPrice && (
                     <p className="text-red-500 text-xs mt-1">
-                      {errors.price.message}
+                      {errors.ticketPrice.message}
                     </p>
                   )}
                 </div>

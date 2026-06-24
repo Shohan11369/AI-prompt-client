@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(req, { params }) {
-    const { id } = params;
+    const { id } = await params;
     const { action, feedback } = await req.json();
 
     const db = await getDb();
@@ -24,13 +24,15 @@ export async function POST(req, { params }) {
             return NextResponse.json({ error: "Invalid action" }, { status: 400 });
     }
 
-    await db.collection("prompts").updateOne({ _id: new ObjectId(id) }, { $set: update });
+    await db.collection("events").updateOne({ _id: new ObjectId(id) }, { $set: update });
     return NextResponse.json({ success: true });
 }
 
 export async function DELETE(req, { params }) {
-    const { id } = params;
+    const { id } = await params;
+    console.log("Attempting to delete prompt with ID:", id);
     const db = await getDb();
-    await db.collection("prompts").deleteOne({ _id: new ObjectId(id) });
-    return NextResponse.json({ success: true });
+    const result = await db.collection("events").deleteOne({ _id: new ObjectId(id) });
+    console.log("Delete result:", result);
+    return NextResponse.json({ success: result.deletedCount === 1 });
 }
