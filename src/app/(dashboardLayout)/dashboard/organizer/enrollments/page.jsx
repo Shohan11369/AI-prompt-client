@@ -90,12 +90,12 @@ const OrganizerEnrollmentsPage = async () => {
       </div>
 
       <Card
-        className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
+        className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
         radius="lg"
       >
         <div className="p-0 overflow-x-auto">
           <table className="w-full min-w-[800px] text-left border-collapse">
-            <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
+            <thead className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
               <tr>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ATTENDEE</th>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EMAIL</th>
@@ -110,7 +110,7 @@ const OrganizerEnrollmentsPage = async () => {
                 <tr key={row.id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150">
                   <td className="py-4 px-6 font-bold text-white">{row.attendeeName}</td>
                   <td className="py-4 px-6 text-slate-300">{row.attendeeEmail}</td>
-                  <td className="py-4 px-6 text-pink-500 font-semibold">{row.eventTitle}</td>
+                  <td className="py-4 px-6 text-brand-primary font-semibold">{row.eventTitle}</td>
                   <td className="py-4 px-6 font-semibold text-green-400">${row.amount.toFixed(2)}</td>
                   <td className="py-4 px-6">
                     <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}>

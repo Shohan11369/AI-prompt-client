@@ -19,8 +19,8 @@ export default async function FeaturedEvents() {
     <section className="py-24 max-w-7xl mx-auto px-6 w-full">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">Featured Prompts</h2>
-          <p className="text-slate-400 text-sm mt-2">Explore the most powerful and effective AI prompts available right now.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">Featured Prompts</h2>
+          <p className="text-slate-600 text-sm mt-2">Explore the most powerful and effective AI prompts available right now.</p>
         </div>
         <Link href="/events" className="text-pink-500 hover:text-pink-400 font-semibold p-0 flex items-center gap-2 transition-colors">
           View All Prompts <FaChevronRight size={12} />
@@ -29,7 +29,7 @@ export default async function FeaturedEvents() {
 
  
       {events.length === 0 ? (
-        <div className="text-center py-12 border border-dashed border-white/10 rounded-2xl bg-slate-900/20">
+        <div className="text-center py-12 border border-dashed border-slate-200 rounded-2xl bg-slate-50">
           <p className="text-slate-500 text-sm">No featured prompts available right now.</p>
         </div>
       ) : (

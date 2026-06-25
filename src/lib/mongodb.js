@@ -30,3 +30,4 @@ export async function getDb() {
   const connectedClient = await clientPromise;
   return connectedClient.db(dbName);
 }
+

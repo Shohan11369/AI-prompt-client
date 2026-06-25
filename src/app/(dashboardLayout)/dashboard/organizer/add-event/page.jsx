@@ -85,7 +85,7 @@ const AddEventPage = () => {
 
       <div className="mt-6 max-w-3xl">
         <Card
-          className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl rounded-2xl"
+          className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl rounded-2xl"
           radius="lg"
         >
           <CardHeader className="flex flex-col gap-1 pb-4 border-b border-white/5 p-6">
@@ -107,7 +107,7 @@ const AddEventPage = () => {
                   <Label htmlFor="title">Title</Label>
                   <Input
                     label="Event Title"
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                     labelPlacement="outside"
                     placeholder="e.g. Rock Fest 2026"
                     {...register("title", {
@@ -133,7 +133,7 @@ const AddEventPage = () => {
                     startContent={
                       <FaImage className="text-slate-400 text-sm" />
                     }
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary"
                   />
                   {errors.banner && (
                     <p className="text-red-500">{errors.banner.message}</p>
@@ -155,7 +155,7 @@ const AddEventPage = () => {
                     {...register("category", {
                       required: "Category is required",
                     })}
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>
@@ -185,7 +185,7 @@ const AddEventPage = () => {
                     {...register("location", {
                       required: "Location is required",
                     })}
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                   >
                     {LOCATIONS.map((loc) => (
                       <option key={loc} value={loc}>
@@ -214,7 +214,7 @@ const AddEventPage = () => {
                 <div>
                   <Label htmlFor="date">Date</Label>
                   <Input
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                     type="date"
                     label="Date"
                     labelPlacement="outside"
@@ -233,7 +233,7 @@ const AddEventPage = () => {
                 <div>
                   <Label htmlFor="price">Price</Label>
                   <Input
-                    className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                    className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                     type="number"
                     label="Ticket Price ($)"
                     labelPlacement="outside"
@@ -284,7 +284,7 @@ const AddEventPage = () => {
               <div className="w-full">
                 <Label htmlFor="description">Description</Label>
                 <TextArea
-                  className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3"
+                  className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary p-3"
                   label="Detailed Description"
                   labelPlacement="outside"
                   placeholder="Outline the detailed schedule, speaker list, and amenities..."
@@ -307,7 +307,7 @@ const AddEventPage = () => {
 
               <Button
                 type="submit"
-                className="bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-bold h-11 px-6 shadow-lg shadow-pink-500/10"
+                className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-bold h-11 px-6 shadow-lg shadow-brand-primary/10"
                 radius="lg"
               >
                 Host Event Now
@@ -321,3 +321,4 @@ const AddEventPage = () => {
 };
 
 export default AddEventPage;
+

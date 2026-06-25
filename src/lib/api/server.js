@@ -26,3 +26,4 @@ export const serverFetch = async (path) => {
   });
   return res.json();
 };
+

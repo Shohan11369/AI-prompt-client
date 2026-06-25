@@ -11,20 +11,20 @@ export default function TopOrganizers({ featuredOrgs }) {
 
   if (items.length === 0) {
     return (
-      <section className="py-24 bg-slate-950/40 border-y border-white/5 w-full text-center">
-        <p className="text-slate-400 text-sm">No premium tools found at the moment.</p>
+      <section className="py-24 bg-slate-50 border-y border-slate-100 w-full text-center">
+        <p className="text-slate-500 text-sm">No premium tools found at the moment.</p>
       </section>
     );
   }
 
   return (
-    <section className="py-24 bg-slate-950/40 border-y border-white/5 w-full">
+    <section className="py-24 bg-slate-50 border-y border-slate-100 w-full">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-950 md:text-4xl">
             Featured AI Tools
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-sm mt-3">
+          <p className="text-slate-600 max-w-xl mx-auto text-sm mt-3">
             Explore state-of-the-art tools and premium workflows curated from your database.
           </p>
         </div>
@@ -42,47 +42,47 @@ export default function TopOrganizers({ featuredOrgs }) {
             return (
               <div key={item?._id || item?.id || Math.random()}>
                 <Card
-                  className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 p-5 flex flex-col h-full gap-4 overflow-hidden"
+                  className="bg-white border border-slate-200 hover:border-brand-primary/30 transition-all duration-300 p-5 flex flex-col h-full gap-4 overflow-hidden"
                   radius="lg"
                 >
                 
-                  <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-950 shrink-0">
+                  <div className="relative h-36 w-full rounded-xl overflow-hidden bg-slate-100 shrink-0">
                     <Image
                       src={imageUrl}
                       alt={title}
                       fill
                       className="object-cover"
                     />
-                    <span className="absolute top-2 left-2 bg-slate-950/80 backdrop-blur-md text-pink-400 font-bold text-[10px] uppercase tracking-wide px-2 py-1 rounded-full border border-pink-500/20">
+                    <span className="absolute top-2 left-2 bg-white/80 backdrop-blur-md text-brand-primary font-bold text-[10px] uppercase tracking-wide px-2 py-1 rounded-full border border-brand-primary/20">
                       {category}
                     </span>
                   </div>
 
                  
                   <div className="space-y-2 flex-grow text-left">
-                    <h3 className="text-sm font-bold text-white line-clamp-1">
+                    <h3 className="text-sm font-bold text-slate-950 line-clamp-1">
                       {title}
                     </h3>
-                    <div className="space-y-1 text-slate-400 text-xs">
+                    <div className="space-y-1 text-slate-600 text-xs">
                       <div className="flex items-center gap-1.5">
-                        <FaRobot className="text-pink-500/80 w-3 h-3" />
-                        <span>Tool: <span className="text-slate-300 font-medium">{aiTool}</span></span>
+                        <FaRobot className="text-brand-primary/80 w-3 h-3" />
+                        <span>Tool: <span className="text-slate-800 font-medium">{aiTool}</span></span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <FaEye className="text-pink-500/80 w-3 h-3" />
-                        <span>Difficulty: <span className="text-slate-300 capitalize">{item?.difficulty || "Beginner"}</span></span>
+                        <FaEye className="text-brand-primary/80 w-3 h-3" />
+                        <span>Difficulty: <span className="text-slate-800 capitalize">{item?.difficulty || "Beginner"}</span></span>
                       </div>
                     </div>
                   </div>
 
                   
-                  <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-auto">
+                  <div className="flex justify-between items-center border-t border-slate-100 pt-3 mt-auto">
                     <div className="text-left">
-                      <div className="text-pink-400 font-extrabold text-xs flex items-center gap-1">
-                        <FaTag className="text-[10px] text-pink-500/60" />
+                      <div className="text-brand-primary font-extrabold text-xs flex items-center gap-1">
+                        <FaTag className="text-[10px] text-brand-primary/60" />
                         <span>{price === 0 ? "Free" : `$${price.toFixed(2)}`}</span>
                       </div>
-                      <div className="flex items-center gap-1 text-[10px] text-amber-400 font-bold mt-0.5">
+                      <div className="flex items-center gap-1 text-[10px] text-amber-600 font-bold mt-0.5">
                         <FaRegStar /> <span>{rating}</span>
                       </div>
                     </div>
@@ -90,7 +90,7 @@ export default function TopOrganizers({ featuredOrgs }) {
                     <Link href={`/events/${item?._id || item?.id || ""}`}>
                       <Button
                         size="sm"
-                        className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold h-7 px-3 text-[11px]"
+                        className="bg-brand-secondary hover:bg-cyan-700 text-white font-semibold h-7 px-3 text-[11px]"
                       >
                         Details
                       </Button>

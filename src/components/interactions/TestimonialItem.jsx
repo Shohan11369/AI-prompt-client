@@ -4,8 +4,9 @@ export default function TestimonialItem({ review }) {
       <p className="text-slate-300 italic">"{review.comment}"</p>
       <div className="mt-4 flex items-center justify-between">
         <span className="text-white font-bold">{review.name}</span>
-        <span className="text-pink-400 text-sm">{review.rating} Stars</span>
+        <span className="text-brand-primary text-sm">{review.rating} Stars</span>
       </div>
     </div>
   );
 }
+

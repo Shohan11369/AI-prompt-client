@@ -1,2 +1,9 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
+
+@theme {
+  --color-brand-primary: #7c3aed; /* Vibrant Darker Purple */
+  --color-brand-secondary: #0891b2; /* Darker Cyan */
+  --color-brand-background: #ffffff; /* White background */
+  --color-brand-text: #0f172a; /* Dark navy text */
+} 

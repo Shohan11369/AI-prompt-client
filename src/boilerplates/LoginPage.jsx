@@ -9,7 +9,7 @@ import { FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
 import Logo from "@/components/Logo";
 const LoginPage = () => {
     return (
-        <Card className="w-full max-w-md border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4">
+        <Card className="w-full max-w-md border border-white/5 bg-slate-50/70 backdrop-blur-xl shadow-2xl p-4">
             <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
                 <Logo />
                 <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-pink-500 bg-clip-text text-transparent">

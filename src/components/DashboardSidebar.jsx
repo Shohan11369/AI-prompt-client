@@ -186,7 +186,7 @@ const DashboardSideBar = () => {
 
   return (
     <aside className="w-64 h-screen border-r border-white/5">
-      <div className="h-full flex flex-col bg-slate-950/80 backdrop-blur-xl">
+      <div className="h-full flex flex-col bg-slate-300 backdrop-blur-xl text-black">
         {/* Brand / Logo */}
         <div className="px-6 py-5 border-b border-white/5">
           <Logo />

@@ -6,3 +6,4 @@ export const myOrganization = async (email) => {
 
   return result;
 };
+

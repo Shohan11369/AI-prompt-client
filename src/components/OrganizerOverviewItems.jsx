@@ -17,7 +17,7 @@ const OrganizerOverviewItems = () => {
                             <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Hosted Events</span>
                             <h2 className="text-3xl font-extrabold text-white">{stats.totalEvents}</h2>
                         </div>
-                        <div className="p-3.5 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20"><FaCalendarAlt size={24} /></div>
+                        <div className="p-3.5 bg-brand-primary/10 text-brand-primary rounded-2xl border border-brand-primary/20"><FaCalendarAlt size={24} /></div>
                     </CardBody>
                 </Card>
                 <Card className="glass border-white/5" radius="lg">
@@ -47,7 +47,7 @@ const OrganizerOverviewItems = () => {
                             <h3 className="text-xl font-bold text-white flex items-center gap-2"><FaCrown className="text-yellow-400" /> Unlock Unlimited Event Creation</h3>
                             <p className="text-slate-400 text-xs max-w-xl leading-relaxed">Standard organizer accounts are limited to <strong>3 events</strong>. Upgrade to our Premium Package for <strong>$49.00</strong> to host unlimited events.</p>
                         </div>
-                        <Button className="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
+                        <Button className="bg-yellow-500 hover:bg-yellow-400 text-brand-background font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
                             Upgrade to Premium
                         </Button>
                     </CardBody>

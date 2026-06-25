@@ -30,7 +30,7 @@ export default async function EventDetailsPage({ params }) {
             <Link href="/events">
                 <Button
                     variant="light"
-                    className="text-slate-400 hover:text-white"
+                    className="text-slate-500 hover:text-slate-900"
                     startContent={<FaArrowLeft />}
                 >
                     Back to Browse
@@ -38,7 +38,7 @@ export default async function EventDetailsPage({ params }) {
             </Link>
 
             {/* Banner */}
-            <div className="relative h-[300px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+            <div className="relative h-[300px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
                 <Image
                     src={eventImageUrl}
                     alt={event?.title || "Event Banner"}
@@ -46,9 +46,9 @@ export default async function EventDetailsPage({ params }) {
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-1" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-1" />
 
-                <span className="absolute top-6 left-6 bg-pink-500 text-white font-extrabold text-xs uppercase tracking-wider px-4 py-2 rounded-full border border-pink-400/20 shadow-lg z-10">
+                <span className="absolute top-6 left-6 bg-white/90 backdrop-blur-md text-brand-primary font-extrabold text-xs uppercase tracking-wider px-4 py-2 rounded-full border border-brand-primary/20 shadow-lg z-10">
                     {event?.category || "AI Tool"}
                 </span>
             </div>
@@ -57,21 +57,21 @@ export default async function EventDetailsPage({ params }) {
                 {/* Left Column: Details & Description */}
                 <div className="lg:col-span-2 space-y-10">
                     <div className="space-y-4">
-                        <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+                        <h1 className="text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
                             {event?.title}
                         </h1>
 
-                        <div className="flex flex-wrap gap-6 text-sm text-slate-300">
+                        <div className="flex flex-wrap gap-6 text-sm text-slate-600">
                             <div className="flex items-center gap-2">
-                                <FaCalendarAlt className="text-pink-500" />
+                                <FaCalendarAlt className="text-brand-primary" />
                                 <span>
-                                    Difficulty: <span className="capitalize font-semibold text-pink-400">{event?.difficulty || "Beginner"}</span>
+                                    Difficulty: <span className="capitalize font-semibold text-brand-primary">{event?.difficulty || "Beginner"}</span>
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <FaMapMarkerAlt className="text-pink-500" />
+                                <FaMapMarkerAlt className="text-brand-primary" />
                                 <span>
-                                    AI Tool: <span className="font-semibold text-indigo-400">{event?.aiTool || "N/A"}</span>
+                                    AI Tool: <span className="font-semibold text-brand-secondary">{event?.aiTool || "N/A"}</span>
                                 </span>
                             </div>
                         </div>
@@ -79,8 +79,8 @@ export default async function EventDetailsPage({ params }) {
 
                     {/* Description */}
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-bold text-white">Event Description</h2>
-                        <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+                        <h2 className="text-2xl font-bold text-slate-950">Event Description</h2>
+                        <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line">
                             {event?.description || "Master this AI tool with our comprehensive workflow. Learn implementation guidelines, best prompts, and optimization techniques for your day-to-day productivity."}
                         </p>
                     </div>
@@ -95,7 +95,7 @@ export default async function EventDetailsPage({ params }) {
 
                     {/* Organizer Info */}
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-bold text-white">Visibility- <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/5 text-pink-400 text-xs font-semibold uppercase tracking-wider">{event?.visibility || "Public"}</span> </h2>
+                        <h2 className="text-2xl font-bold text-slate-950">Visibility- <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-primary/20 bg-brand-primary/5 text-brand-primary text-xs font-semibold uppercase tracking-wider">{event?.visibility || "Public"}</span> </h2>
                     </div>
                 </div>
 

@@ -14,15 +14,15 @@ const PaymentsTable = ({ payments }) => {
 
 
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table aria-label="Payment History Table" removeWrapper>
           <TableContent>
-            <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20" isRowHeader>TRANSACTION ID</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">AMOUNT PAID</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">DATE</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</TableColumn>
+            <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>TRANSACTION ID</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">AMOUNT PAID</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">DATE</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">STATUS</TableColumn>
             </TableHeader>
             <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">No receipt records in transaction logs.</p>}>
               {payments.map((p) => (
@@ -53,3 +53,4 @@ const PaymentsTable = ({ payments }) => {
 };
 
 export default PaymentsTable;
+

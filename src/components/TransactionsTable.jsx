@@ -31,7 +31,7 @@ const TransactionsTable = () => {
   ];
 
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table
           aria-label="Platform Transaction Logs"
@@ -39,23 +39,23 @@ const TransactionsTable = () => {
           removeWrapper
         >
           <TableContent>
-            <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+            <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
                 USER EMAIL
               </TableColumn>
               <TableColumn
                 isRowHeader
-                className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20"
+                className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20"
               >
                 TRANSACTION ID
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
                 AMOUNT
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
                 DATE
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
                 PAYMENT STATUS
               </TableColumn>
             </TableHeader>
@@ -106,3 +106,4 @@ const TransactionsTable = () => {
 };
 
 export default TransactionsTable;
+

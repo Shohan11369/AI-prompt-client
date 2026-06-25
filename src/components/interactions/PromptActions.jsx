@@ -15,7 +15,7 @@ export default function PromptActions({ prompt }) {
       <div className="flex items-center gap-4">
         <BookmarkButton promptId={prompt._id} />
         <CopyButton promptText={prompt.description} promptId={prompt._id} />
-        <button onClick={() => setIsReportOpen(true)} className="text-sm text-slate-400 hover:text-red-400">
+        <button onClick={() => setIsReportOpen(true)} className="text-sm text-slate-600 hover:text-red-600">
           Report
         </button>
       </div>
@@ -24,7 +24,7 @@ export default function PromptActions({ prompt }) {
         {reviews.length > 0 ? (
             reviews.map((r) => <TestimonialItem key={r._id} review={r} />)
         ) : (
-            <p className="text-slate-400 italic">No reviews yet.</p>
+            <p className="text-slate-600 italic">No reviews yet.</p>
         )}
       </div>
 
@@ -38,3 +38,4 @@ export default function PromptActions({ prompt }) {
     </div>
   );
 }
+

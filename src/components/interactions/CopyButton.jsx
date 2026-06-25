@@ -14,8 +14,9 @@ export default function CopyButton({ promptText, promptId }) {
   };
 
   return (
-    <button onClick={copyToClipboard} className="flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition">
+    <button onClick={copyToClipboard} className="flex items-center gap-2 px-4 py-2 bg-slate-200 text-brand-text rounded hover:bg-slate-300 transition">
       <FaCopy /> Copy
     </button>
   );
 }
+

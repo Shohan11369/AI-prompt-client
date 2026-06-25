@@ -18,3 +18,4 @@ export const uploadImage = async (imageFile) => {
 
   toast.error('Image upload failed');
 };
+

@@ -34,26 +34,26 @@ export default function ReviewSection({ promptId, initialReviews = [] }) {
 
   return (
     <div className="mt-8">
-      <h3 className="text-xl font-bold text-white mb-4">Submit a Review</h3>
-      <form onSubmit={submitReview} className="bg-slate-900 p-4 rounded-lg space-y-3">
+      <h3 className="text-xl font-bold text-slate-950 mb-4">Submit a Review</h3>
+      <form onSubmit={submitReview} className="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
         <input 
             type="number" min="1" max="5" value={rating} 
             onChange={(e) => setRating(parseInt(e.target.value))}
-            className="bg-slate-800 p-2 rounded w-full text-white"
+            className="bg-white border border-slate-300 p-2 rounded-lg w-full text-slate-900"
         />
         <textarea 
             value={comment} onChange={(e) => setComment(e.target.value)} 
             placeholder="Write a review..."
-            className="bg-slate-800 p-2 rounded w-full text-white h-24"
+            className="bg-white border border-slate-300 p-2 rounded-lg w-full text-slate-900 h-24"
         />
-        <button type="submit" className="bg-pink-600 text-white px-4 py-2 rounded">Submit Review</button>
+        <button type="submit" className="bg-brand-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-brand-primary/90 transition">Submit Review</button>
       </form>
       
       <div className="mt-6 space-y-4">
         {reviews.map((r) => (
-          <div key={r._id} className="border-b border-white/10 py-4">
-            <p className="text-white font-semibold">{r.name} - {r.rating} stars</p>
-            <p className="text-slate-300">{r.comment}</p>
+          <div key={r._id} className="border-b border-slate-200 py-4">
+            <p className="text-slate-950 font-semibold">{r.name} - {r.rating} stars</p>
+            <p className="text-slate-700">{r.comment}</p>
             <p className="text-xs text-slate-500">{new Date(r.createdAt).toLocaleDateString()}</p>
           </div>
         ))}
@@ -61,3 +61,4 @@ export default function ReviewSection({ promptId, initialReviews = [] }) {
     </div>
   );
 }
+

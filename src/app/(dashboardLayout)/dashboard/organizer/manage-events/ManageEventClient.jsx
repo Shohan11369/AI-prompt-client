@@ -14,19 +14,19 @@ const ManageEventClient = ({ events }) => {
     return (
         <div>
             <div className="mt-6">
-                <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+                <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
                     <div className="p-0 overflow-x-auto">
 
                         <Table aria-label="Manage Events Table" >
                             <TableContent>
-                                <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20" isRowHeader>EVENT</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">CATEGORY</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">DATE</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">TICKET PRICE</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">AVAILABLE SEATS</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ACTIONS</TableColumn>
+                                <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>EVENT</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">CATEGORY</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">DATE</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">TICKET PRICE</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">AVAILABLE SEATS</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">STATUS</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">ACTIONS</TableColumn>
                                 </TableHeader>
                                 <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">You haven not added any events yet.</p>}>
                                     {events?.map((ev) => (
@@ -53,14 +53,14 @@ const ManageEventClient = ({ events }) => {
                                                 <div className="flex gap-2">
                                                     <div className="group relative flex items-center justify-center w-fit">
                                                         <Button isIconOnly size="sm" radius="full" className="h-8 w-8 min-w-0 p-0 border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:scale-[1.03] transition-all duration-200" onPress={() => { setEditingEvent({ ...ev }); setIsModalOpen(true); }}><FaEdit size={12} /></Button>
-                                                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 scale-0 transition-all duration-150 rounded-lg bg-slate-950 border border-white/10 px-2 py-1 text-[10px] text-white group-hover:scale-100 font-semibold z-30 whitespace-nowrap shadow-xl">Edit Event</span>
+                                                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 scale-0 transition-all duration-150 rounded-lg bg-brand-background border border-white/10 px-2 py-1 text-[10px] text-white group-hover:scale-100 font-semibold z-30 whitespace-nowrap shadow-xl">Edit Event</span>
                                                     </div>
                                                     <div className="group relative flex items-center justify-center w-fit">
                                                         <Button isIconOnly size="sm" radius="full" className="h-8 w-8 min-w-0 p-0 border border-red-500/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:scale-[1.03] transition-all duration-200" onPress={() => {
                                                             setDeletedId(ev._id)
                                                             setIsDeleteOpen(true)
                                                         }}><FaTrash size={12} /></Button>
-                                                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 scale-0 transition-all duration-150 rounded-lg bg-slate-950 border border-white/10 px-2 py-1 text-[10px] text-white group-hover:scale-100 font-semibold z-30 whitespace-nowrap shadow-xl">Delete Event</span>
+                                                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 scale-0 transition-all duration-150 rounded-lg bg-brand-background border border-white/10 px-2 py-1 text-[10px] text-white group-hover:scale-100 font-semibold z-30 whitespace-nowrap shadow-xl">Delete Event</span>
                                                     </div>
                                                 </div>
                                             </TableCell>

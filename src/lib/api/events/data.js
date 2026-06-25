@@ -18,3 +18,4 @@ export const fetchFeaturedEvents = async () => {
 
   return result;
 };
+

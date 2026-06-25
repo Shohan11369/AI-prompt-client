@@ -31,20 +31,20 @@ const AttendeeOverviewPage = async () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* Total Spent */}
-        <Card className="glass border-white/5 bg-slate-900/40 backdrop-blur-md" radius="lg">
+        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
                 Total Spent
               </span>
 
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 ${totalSpent.toFixed(2)}
               </h2>
             </div>
 
-            <div className="p-3.5 bg-green-500/10 text-green-400 rounded-2xl border border-green-500/20">
+            <div className="p-3.5 bg-green-500/10 text-green-600 rounded-2xl border border-green-500/20">
               <FaDollarSign size={24} />
             </div>
 
@@ -52,20 +52,20 @@ const AttendeeOverviewPage = async () => {
         </Card>
 
         {/* Booked */}
-        <Card className="glass border-white/5 bg-slate-900/40 backdrop-blur-md" radius="lg">
+        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
                 Booked
               </span>
 
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 {ticketsBooked}
               </h2>
             </div>
 
-            <div className="p-3.5 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20">
+            <div className="p-3.5 bg-brand-primary/10 text-brand-primary rounded-2xl border border-brand-primary/20">
               <FaTicketAlt size={24} />
             </div>
 
@@ -73,20 +73,20 @@ const AttendeeOverviewPage = async () => {
         </Card>
 
         {/* Upcoming */}
-        <Card className="glass border-white/5 bg-slate-900/40 backdrop-blur-md" radius="lg">
+        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
                 Upcoming Events
               </span>
 
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 {upcomingEvents}
               </h2>
             </div>
 
-            <div className="p-3.5 bg-indigo-500/10 text-indigo-400 rounded-2xl border border-indigo-500/20">
+            <div className="p-3.5 bg-brand-secondary/10 text-brand-secondary rounded-2xl border border-brand-secondary/20">
               <FaCalendarDay size={24} />
             </div>
 

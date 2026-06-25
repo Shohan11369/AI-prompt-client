@@ -7,15 +7,20 @@ import { motion } from "motion/react";
 const Hero = () => {
     return (
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-6">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-indigo-600/15 via-slate-950 to-slate-950 -z-10" />
-            <div className="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 -z-10" />
-
+            {/* Background Image Layer */}
+            {/* <div 
+                className="absolute inset-0 bg-cover bg-center -z-20" 
+                style={{ backgroundImage: "url('/bg2.jpg')" }} 
+            /> */}
+            {/* Dark Overlay for 'dark type' theme */}
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent -z-10" />
+            
             <div className="max-w-5xl text-center space-y-8">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-xs font-semibold uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white text-black text-xs font-semibold uppercase tracking-wider"
                 >
                     <FaRobot /> The Future of Prompt Engineering
                 </motion.div>
@@ -24,10 +29,10 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight"
+                    className="text-5xl md:text-7xl font-extrabold tracking-tight text-black leading-tight"
                 >
                     Unlock the Power of AI with {" "}
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
                         Mastered Prompts
                     </span>{" "}
                 </motion.h1>
@@ -36,7 +41,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+                    className="text-black text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
                 >
                     Access thousands of expert-crafted prompts for ChatGPT, Midjourney, and Claude. Elevate your workflow, generate stunning visuals, and achieve professional results instantly.
                 </motion.p>
@@ -55,15 +60,15 @@ const Hero = () => {
                             Browse Prompts
                         </Button>
                     </Link>
-                    <Link href="/sell-your-prompts">
+                    {/* <Link href="/sell-your-prompts">
                         <Button
                             variant="bordered"
-                            className="border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold h-14 px-8 text-md w-full sm:w-auto border-2"
+                            className="border-white/20 hover:bg-white/10 hover:border-white/30 text-white font-semibold h-14 px-8 text-md w-full sm:w-auto border-2"
                             radius="full"
                         >
                             Become a Creator
                         </Button>
-                    </Link>
+                    </Link> */}
                 </motion.div>
             </div>
         </section>

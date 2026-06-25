@@ -20,11 +20,11 @@ export default function EventCard({ event }) {
 
   return (
     <Card
-      className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden"
+      className="bg-white border border-slate-200 hover:border-brand-primary/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden"
       radius="lg"
     >
     
-      <div className="relative h-48 w-full overflow-hidden bg-slate-950">
+      <div className="relative h-48 w-full overflow-hidden bg-slate-100">
         <Image
           src={imageUrl}
           alt={currentItem?.title || "AI Tool"}
@@ -38,34 +38,34 @@ export default function EventCard({ event }) {
       </div>
 
       <div className="p-6 flex-grow space-y-4">
-        <h3 className="text-xl font-bold text-white hover:text-pink-500 transition-colors line-clamp-1">
+        <h3 className="text-xl font-bold text-slate-950 hover:text-brand-primary transition-colors line-clamp-1">
           {currentItem?.title}
         </h3>
         
-        <div className="space-y-2 text-slate-400 text-sm">
+        <div className="space-y-2 text-slate-600 text-sm">
           <div className="flex items-center gap-2">
-            <FaRobot className="text-pink-500/80 w-4 h-4" />
-            <span className="font-semibold text-slate-300">AI Tool:</span>
+            <FaRobot className="text-brand-primary/80 w-4 h-4" />
+            <span className="font-semibold text-slate-800">AI Tool:</span>
             <span>{currentItem?.aiTool || "N/A"}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaCopy className="text-pink-500/80 w-4 h-4" />
-            <span className="font-semibold text-slate-300">Copy Count:</span>
+            <FaCopy className="text-brand-primary/80 w-4 h-4" />
+            <span className="font-semibold text-slate-800">Copy Count:</span>
             <span>{currentItem?.copyCount || 0}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaUser className="text-pink-500/80 w-4 h-4" />
-            <span className="font-semibold text-slate-300">Creator:</span>
-            <span>{currentItem?.creatorName || "Unknown"}</span>
+            <FaUser className="text-brand-primary/80 w-4 h-4" />
+            <span className="font-semibold text-slate-800">Price:</span>
+            <span>{currentItem?.ticketPrice ? `$${currentItem.ticketPrice}` : "Free"}</span>
           </div>
         </div>
       </div>
 
-      <div className="px-6 pb-6 pt-4 border-t border-white/5 mt-auto bg-slate-950/20">
+      <div className="px-6 pb-6 pt-4 border-t border-slate-100 mt-auto bg-slate-50">
         <Link href={`/events/${currentItem?._id || currentItem?.id || ""}`}>
           <Button
             size="sm"
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold h-9"
+            className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold h-9"
             disabled={!currentItem?._id && !currentItem?.id}
           >
             View Details

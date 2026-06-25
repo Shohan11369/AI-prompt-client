@@ -49,7 +49,7 @@ const AdminPaymentsPage = async () => {
     return (
         <div className="p-6 space-y-6">
             <DashboardHeading title="All Payments" description="View transaction history" />
-            <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+            <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
                 <Table aria-label="Payments table" removeWrapper>
                     <TableContent>
                         <TableHeader>
@@ -63,7 +63,7 @@ const AdminPaymentsPage = async () => {
                             {payments.map((p) => (
                                 <TableRow key={p._id}>
                                     <TableCell className="font-bold text-white">{p.user}</TableCell>
-                                    <TableCell className="text-pink-500 font-semibold">{p.event}</TableCell>
+                                    <TableCell className="text-brand-primary font-semibold">{p.event}</TableCell>
                                     <TableCell className="font-semibold text-green-400">${p.amount.toFixed(2)}</TableCell>
                                     <TableCell>{p.status}</TableCell>
                                     <TableCell>{new Date(p.date).toLocaleDateString()}</TableCell>

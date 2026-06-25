@@ -39,7 +39,7 @@ const OrganizerOverviewPage = async () => {
                 {stats.totalEvents}
               </h2>
             </div>
-            <div className="p-3.5 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20">
+            <div className="p-3.5 bg-brand-primary/10 text-brand-primary rounded-2xl border border-brand-primary/20">
               <FaCalendarAlt size={24} />
             </div>
           </div>
@@ -132,3 +132,4 @@ const OrganizerOverviewPage = async () => {
 };
 
 export default OrganizerOverviewPage;
+

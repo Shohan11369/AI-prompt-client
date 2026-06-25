@@ -2,7 +2,7 @@ const UserStats = () => {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-                { label: "Platform Users", value: 50, icon: FaUsers, color: "pink", gradient: "from-pink-500/10 via-pink-500/5 to-transparent" },
+                { label: "Platform Users", value: 50, icon: FaUsers, color: "pink", gradient: "from-brand-primary/10 via-brand-primary/5 to-transparent" },
                 { label: "Events Hosted", value: 5, icon: FaCalendarAlt, color: "indigo", gradient: "from-indigo-500/10 via-indigo-500/5 to-transparent" },
                 { label: "Organizations", value: 5, icon: FaBuilding, color: "purple", gradient: "from-purple-500/10 via-purple-500/5 to-transparent" },
                 { label: "Total Revenue", value: "$0.00", icon: FaDollarSign, color: "green", gradient: "from-green-500/10 via-green-500/5 to-transparent" },

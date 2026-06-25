@@ -20,3 +20,4 @@ export const deleteEvent = async (id) => {
   revalidatePath('/dashboard/organizer/manage-events');
   return resData;
 };
+

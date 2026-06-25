@@ -15,22 +15,22 @@ const TicketsTable = ({ tickets }) => {
   // console.log(tickets);
 
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table aria-label="My Tickets Table" removeWrapper>
           <TableContent>
-            <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20" isRowHeader>EVENT NAME</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">DATE</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">QUANTITY</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">TOTAL PAID</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</TableColumn>
+            <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>EVENT NAME</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">DATE</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">QUANTITY</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">TOTAL PAID</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">STATUS</TableColumn>
             </TableHeader>
             <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">No ticket passes booked yet. Explore Browse Events!</p>}>
               {tickets.map((ticket) => (
                 <TableRow key={ticket._id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0">
                   <TableCell className="py-4 px-6 align-middle font-bold text-white">
-                    <Link href={`/events/${ticket.evetId}`} className="hover:text-pink-500 hover:underline">
+                    <Link href={`/events/${ticket.evetId}`} className="hover:text-brand-primary hover:underline">
                       {ticket.eventTitle}
                     </Link>
                   </TableCell>
@@ -58,3 +58,4 @@ const TicketsTable = ({ tickets }) => {
 };
 
 export default TicketsTable;
+

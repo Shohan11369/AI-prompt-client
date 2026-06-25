@@ -47,7 +47,7 @@ const AdminPromptsPage = async () => {
       </div>
 
       <Card
-        className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
+        className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
         radius="lg"
       >
         <AdminPromptsTable prompts={enrichedPrompts} />

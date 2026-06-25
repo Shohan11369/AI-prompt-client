@@ -25,19 +25,18 @@ export default async function BrowseEventsPage({ searchParams }) {
     <div className="min-h-screen py-16 px-6 max-w-7xl mx-auto w-full space-y-12">
       {/* HEADER */}
       <div className="text-center md:text-left space-y-2">
-        <h1 className="text-4xl font-extrabold tracking-tight text-white">
-          Browse Premium Events
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-950">
+          Browse Premium AI Prompts
         </h1>
-        <p className="text-slate-400 text-sm max-w-xl">
-          Search, filter, and discover state-of-the-art events. Instant booking
-          guarantees your access.
+        <p className="text-slate-600 text-sm max-w-xl">
+         Explore trending AI prompts and unlock endless creativity with instant access.
         </p>
       </div>
 
       {/* Interactive client-side filters wrapped in Suspense */}
       <Suspense
         fallback={
-          <div className="h-28 w-full bg-slate-900/50 animate-pulse rounded-2xl border border-white/5" />
+          <div className="h-28 w-full bg-slate-50 animate-pulse rounded-2xl border border-slate-200" />
         }
       >
         <FilterPanel />
@@ -52,13 +51,13 @@ export default async function BrowseEventsPage({ searchParams }) {
               .map((_, i) => (
                 <Card
                   key={i}
-                  className="bg-slate-900/50 border border-white/5 p-4 space-y-4 animate-pulse"
+                  className="bg-white border border-slate-200 p-4 space-y-4 animate-pulse"
                 >
-                  <div className="h-48 rounded-xl bg-slate-800" />
+                  <div className="h-48 rounded-xl bg-slate-100" />
                   <div className="space-y-3">
-                    <div className="h-4 bg-slate-800 w-3/5 rounded-lg" />
-                    <div className="h-6 bg-slate-800 w-4/5 rounded-lg" />
-                    <div className="h-4 bg-slate-800 w-2/5 rounded-lg" />
+                    <div className="h-4 bg-slate-200 w-3/5 rounded-lg" />
+                    <div className="h-6 bg-slate-200 w-4/5 rounded-lg" />
+                    <div className="h-4 bg-slate-200 w-2/5 rounded-lg" />
                   </div>
                 </Card>
               ))}
@@ -67,11 +66,11 @@ export default async function BrowseEventsPage({ searchParams }) {
       >
       
         {events.length === 0 ? (
-          <div className="text-center py-20 border border-dashed border-white/10 rounded-3xl bg-slate-900/20">
-            <p className="text-slate-400 font-medium">
+          <div className="text-center py-20 border border-dashed border-slate-300 rounded-3xl bg-slate-50">
+            <p className="text-slate-700 font-medium">
               No results found matching your criteria.
             </p>
-            <p className="text-slate-600 text-xs mt-1">
+            <p className="text-slate-500 text-xs mt-1">
               Try resetting the filters or changing your keywords.
             </p>
           </div>
@@ -89,3 +88,4 @@ export default async function BrowseEventsPage({ searchParams }) {
     </div>
   );
 }
+

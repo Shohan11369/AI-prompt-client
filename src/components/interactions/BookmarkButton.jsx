@@ -36,10 +36,11 @@ export default function BookmarkButton({ promptId }) {
   return (
     <button onClick={toggleBookmark} className="p-2 transition-colors duration-200">
       {bookmarked ? (
-        <FaHeart className="text-pink-500 scale-110" />
+        <FaHeart className="text-brand-primary scale-110" />
       ) : (
-        <FaRegHeart className="text-slate-400 hover:text-pink-500" />
+        <FaRegHeart className="text-brand-text hover:text-brand-primary" />
       )}
     </button>
   );
 }
+

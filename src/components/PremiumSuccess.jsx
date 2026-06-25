@@ -8,9 +8,9 @@ export default function PremiumSuccessPage() {
 
     return (
         <div className="min-h-[80vh] flex items-center justify-center bg-[#080c16] px-6 py-12">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950 -z-10" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-secondary/20 via-brand-background to-brand-background -z-10" />
 
-            <Card className="w-full max-w-lg border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4">
+            <Card className="w-full max-w-lg border border-white/5 bg-brand-background/70 backdrop-blur-xl shadow-2xl p-4">
                 <>
                     <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
                         <div className="p-3 bg-yellow-500/10 rounded-full text-yellow-500 border border-yellow-500/20 mb-2">
@@ -24,7 +24,7 @@ export default function PremiumSuccessPage() {
                         </p>
                     </CardHeader>
 
-                    <CardBody className="gap-6 bg-slate-900/40 p-6 rounded-2xl border border-white/5 text-center">
+                    <CardBody className="gap-6 bg-brand-background/40 p-6 rounded-2xl border border-white/5 text-center">
                         <div className="space-y-4">
                             <FaCheckCircle className="text-green-500 mx-auto" size={40} />
                             <h3 className="text-white font-bold text-lg">Unlimited Hosting Unlocked</h3>
@@ -39,7 +39,7 @@ export default function PremiumSuccessPage() {
                             <Button
                                 as={Link}
                                 href="/dashboard/organizer"
-                                className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-950 font-extrabold h-11 px-8 shadow-lg shadow-yellow-500/10 hover:shadow-yellow-500/20"
+                                className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-brand-background font-extrabold h-11 px-8 shadow-lg shadow-yellow-500/10 hover:shadow-yellow-500/20"
                                 radius="lg"
                                 endContent={<FaArrowRight />}
                             >
@@ -52,3 +52,4 @@ export default function PremiumSuccessPage() {
         </div>
     );
 }
+
