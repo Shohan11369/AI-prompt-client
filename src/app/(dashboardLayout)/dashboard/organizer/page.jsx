@@ -93,7 +93,7 @@ const OrganizerOverviewPage = async () => {
       {
         !isPremium && (
           <div className="flex justify-end">
-            <UpgradePremiumButton />
+            {/* <UpgradePremiumButton /> */}
           </div>
         )
       }
