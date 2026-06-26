@@ -31,7 +31,7 @@ const TransactionsTable = () => {
   ];
 
   return (
-    <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-slate-200 bg-white shadow-sm p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table
           aria-label="Platform Transaction Logs"
@@ -39,23 +39,23 @@ const TransactionsTable = () => {
           removeWrapper
         >
           <TableContent>
-            <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
+            <TableHeader className="bg-slate-100 border-b border-slate-200 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 USER EMAIL
               </TableColumn>
               <TableColumn
                 isRowHeader
-                className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20"
+                className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50"
               >
                 TRANSACTION ID
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 AMOUNT
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 DATE
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 PAYMENT STATUS
               </TableColumn>
             </TableHeader>
@@ -69,18 +69,18 @@ const TransactionsTable = () => {
               {transactions.map((t) => (
                 <TableRow
                   key={t._id}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0"
+                  className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150 last:border-b-0"
                 >
-                  <TableCell className="py-4 px-6 align-middle font-semibold text-white">
+                  <TableCell className="py-4 px-6 align-middle font-semibold text-slate-900">
                     {t.userEmail}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-mono text-xs text-indigo-400 truncate max-w-[250px]">
+                  <TableCell className="py-4 px-6 align-middle font-mono text-xs text-indigo-600 truncate max-w-[250px]">
                     {t.transactionId}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-extrabold text-green-400">
+                  <TableCell className="py-4 px-6 align-middle font-extrabold text-green-600">
                     ${t.amount?.toFixed(2)}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">
+                  <TableCell className="py-4 px-6 align-middle text-slate-600 font-medium">
                     {new Date(t.paidAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="py-4 px-6 align-middle">
@@ -90,7 +90,7 @@ const TransactionsTable = () => {
                       color={
                         t.paymentStatus === "failed" ? "danger" : "success"
                       }
-                      className="font-bold uppercase text-[10px] tracking-wider border border-white/5 px-2.5 py-1.5"
+                      className="font-bold uppercase text-[10px] tracking-wider border border-slate-200 px-2.5 py-1.5"
                     >
                       {t.paymentStatus || "succeeded"}
                     </Chip>

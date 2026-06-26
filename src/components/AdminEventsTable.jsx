@@ -33,7 +33,7 @@ const AdminEventsTable = () => {
   ];
 
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-slate-200 bg-white shadow-sm p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table
           aria-label="Approve Organizer Events"
@@ -41,26 +41,26 @@ const AdminEventsTable = () => {
           removeWrapper
         >
           <TableContent>
-            <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+            <TableHeader className="bg-slate-100 border-b border-slate-200 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 ORGANIZER EMAIL
               </TableColumn>
               <TableColumn
                 isRowHeader
-                className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20"
+                className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50"
               >
                 EVENT TITLE
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 CATEGORY
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 TICKET PRICE
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 CAPACITY
               </TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">
                 STATUS
               </TableColumn>
             </TableHeader>
@@ -74,21 +74,21 @@ const AdminEventsTable = () => {
               {events.map((ev) => (
                 <TableRow
                   key={ev._id}
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0"
+                  className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150 last:border-b-0"
                 >
-                  <TableCell className="py-4 px-6 align-middle font-semibold text-indigo-400">
+                  <TableCell className="py-4 px-6 align-middle font-semibold text-indigo-600">
                     {ev.organizerEmail}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-bold text-white">
+                  <TableCell className="py-4 px-6 align-middle font-bold text-slate-900">
                     {ev.title}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">
+                  <TableCell className="py-4 px-6 align-middle text-slate-600 font-medium">
                     {ev.category}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-bold text-green-400">
+                  <TableCell className="py-4 px-6 align-middle font-bold text-green-600">
                     ${ev.ticketPrice?.toFixed(2)}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">
+                  <TableCell className="py-4 px-6 align-middle text-slate-600 font-medium">
                     {ev.availableSeats} Seats
                   </TableCell>
                   <TableCell className="py-4 px-6 align-middle">
@@ -96,10 +96,10 @@ const AdminEventsTable = () => {
                       size="sm"
                       className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${
                         ev.status === "approved"
-                          ? "bg-green-500/10 text-green-400 border-green-500/20"
+                          ? "bg-green-100 text-green-700 border-green-200"
                           : ev.status === "rejected"
-                            ? "bg-red-500/10 text-red-400 border-red-500/20"
-                            : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+                            ? "bg-red-100 text-red-700 border-red-200"
+                            : "bg-yellow-100 text-yellow-700 border-yellow-200"
                       }`}
                     >
                       {ev.status || "pending"}

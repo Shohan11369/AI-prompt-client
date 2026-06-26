@@ -23,7 +23,7 @@ const AttendeeOverviewPage = async () => {
   return (
     <div className="space-y-8">
       <DashboardHeading
-        title="Attendee Overview"
+        title="User Overview"
         description="Track your bookings, payments, and upcoming activity"
       />
 

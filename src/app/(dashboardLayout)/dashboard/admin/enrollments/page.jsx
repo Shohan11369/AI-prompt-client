@@ -5,9 +5,9 @@ import { Card, Chip } from "@heroui/react";
 import StatusActions from "@/components/StatusActions";
 
 const statusStyles = {
-  approved: "bg-green-500/10 text-green-400 border-green-500/20",
-  rejected: "bg-red-500/10 text-red-400 border-red-500/20",
-  pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+  approved: "bg-green-100 text-green-700 border-green-200",
+  rejected: "bg-red-100 text-red-700 border-red-200",
+  pending: "bg-yellow-100 text-yellow-700 border-yellow-200",
 };
 
 const normalizeStatus = (paymentStatus, approvalStatus) => {
@@ -73,45 +73,45 @@ const AdminEnrollmentsPage = async () => {
       
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
-            <h2 className="text-3xl font-extrabold text-white">{rows.length}</h2>
+        <Card className="glass border-slate-200 p-6" radius="lg">
+            <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
+            <h2 className="text-3xl font-extrabold text-slate-900">{rows.length}</h2>
         </Card>
-        <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
-            <h2 className="text-3xl font-extrabold text-white">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
+        <Card className="glass border-slate-200 p-6" radius="lg">
+            <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Unique Users</span>
+            <h2 className="text-3xl font-extrabold text-slate-900">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
         </Card>
-        <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Revenue</span>
-            <h2 className="text-3xl font-extrabold text-white">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
+        <Card className="glass border-slate-200 p-6" radius="lg">
+            <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Total Revenue</span>
+            <h2 className="text-3xl font-extrabold text-slate-900">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
         </Card>
       </div>
 
       <Card
-        className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl"
+        className="border border-slate-200 bg-white shadow-sm p-6 rounded-2xl"
         radius="lg"
       >
         <div className="p-0 overflow-x-auto">
           <table className="w-full min-w-[800px] text-left border-collapse">
-            <thead className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
+            <thead className="bg-slate-100 border-b border-slate-200 rounded-t-xl">
               <tr>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ATTENDEE</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EMAIL</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EVENT</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ORGANIZER</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">PAID</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">STATUS</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ACTIONS</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">USER</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">EMAIL</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">EVENT</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">ORGANIZER</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">PAID</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">STATUS</th>
+                <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150">
-                  <td className="py-4 px-6 font-bold text-white">{row.attendeeName}</td>
-                  <td className="py-4 px-6 text-slate-300">{row.attendeeEmail}</td>
-                  <td className="py-4 px-6 text-brand-primary font-semibold">{row.eventTitle}</td>
-                  <td className="py-4 px-6 text-slate-300">{row.organizerEmail || "-"}</td>
-                  <td className="py-4 px-6 font-semibold text-green-400">${row.amount.toFixed(2)}</td>
+                <tr key={row.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150">
+                  <td className="py-4 px-6 font-bold text-slate-900">{row.attendeeName}</td>
+                  <td className="py-4 px-6 text-slate-600">{row.attendeeEmail}</td>
+                  <td className="py-4 px-6 text-indigo-600 font-semibold">{row.eventTitle}</td>
+                  <td className="py-4 px-6 text-slate-600">{row.organizerEmail || "-"}</td>
+                  <td className="py-4 px-6 font-semibold text-green-600">${row.amount.toFixed(2)}</td>
                   <td className="py-4 px-6">
                     <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[row.status]}`}>
                       {row.status}

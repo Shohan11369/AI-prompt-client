@@ -21,7 +21,7 @@ export default function Testimonials() {
   return (
     <section className=" py-24 max-w-7xl mx-auto px-6 w-full">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-slate-950 md:text-4xl font-sans">Client Testimonials</h2>
+        <h2 className="text-3xl font-bold text-slate-950 md:text-4xl font-sans">Client Reviews</h2>
         <p className="text-slate-600 max-w-xl mx-auto text-sm mt-3">
           Don't just take our word for it. Hear from creators and users thriving on the platform.
         </p>
@@ -31,9 +31,9 @@ export default function Testimonials() {
         {testimonials.map((t) => (
           <div 
             key={t.id} 
-            className="bg-white border border-slate-200 hover:border-brand-primary/30 transition-all duration-300 p-8 rounded-2xl space-y-6 relative hover:-translate-y-1"
+            className="bg-slate-800 border border-slate-600 hover:border-brand-primary/30 transition-all duration-300 p-8 rounded-2xl space-y-6 relative hover:-translate-y-1"
           >
-            <p className="text-slate-700 italic text-md leading-relaxed">
+            <p className="text-white italic text-md leading-relaxed">
               "{t.quote}"
             </p>
             <div className="flex items-center gap-4">
@@ -45,7 +45,7 @@ export default function Testimonials() {
                 alt={t.name}
               />
               <div>
-                <h4 className="text-slate-950 font-bold text-sm">{t.name}</h4>
+                <h4 className="text-white font-bold text-sm">{t.name}</h4>
                 <p className="text-brand-primary text-xs font-semibold">{t.role}</p>
               </div>
             </div>

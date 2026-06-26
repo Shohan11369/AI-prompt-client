@@ -20,7 +20,7 @@ const TicketsTable = ({ tickets }) => {
         <Table aria-label="My Tickets Table" removeWrapper>
           <TableContent>
             <TableHeader className="bg-brand-background/40 border-b border-brand-primary/10 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-700 font-extrabold uppercase text-[11px] tracking-wider border-b border-brand-primary/10" isRowHeader>EVENT NAME</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-700 font-extrabold uppercase text-[11px] tracking-wider border-b border-brand-primary/10" isRowHeader> NAME</TableColumn>
               <TableColumn className="py-4 px-6 text-slate-700 font-extrabold uppercase text-[11px] tracking-wider border-b border-brand-primary/10">DATE</TableColumn>
               <TableColumn className="py-4 px-6 text-slate-700 font-extrabold uppercase text-[11px] tracking-wider border-b border-brand-primary/10">QUANTITY</TableColumn>
               <TableColumn className="py-4 px-6 text-slate-700 font-extrabold uppercase text-[11px] tracking-wider border-b border-brand-primary/10">TOTAL PAID</TableColumn>

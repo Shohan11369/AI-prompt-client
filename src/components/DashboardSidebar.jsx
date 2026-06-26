@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Logo from "@/components/Logo";
 import { useSession, authClient } from "@/lib/auth-client";
 import Image from "next/image";
@@ -14,9 +15,12 @@ import {
   FaUsers,
   FaUserShield,
   FaFileAlt,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 const DashboardSideBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const handleLogout = async () => {
     await authClient.signOut();
@@ -188,10 +192,18 @@ const DashboardSideBar = () => {
             : null;
 
   return (
-    <aside className="w-64 h-screen shadow-lg">
-      <div className="h-full flex flex-col bg-slate-300 backdrop-blur-xl text-black">
-        {/* Brand / Logo */}
-        <div className="px-6 py-5 shadow-sm">
+    <aside className="w-full md:w-64 md:h-screen shadow-lg">
+      {/* Mobile Toggle */}
+      <div className="flex md:hidden items-center justify-between p-4 bg-slate-300">
+        <Logo />
+        <button onClick={() => setIsOpen(!isOpen)} className="text-2xl p-2">
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      <div className={`${isOpen ? 'block' : 'hidden'} md:block h-screen flex flex-col bg-slate-300 backdrop-blur-xl text-black`}>
+        {/* Brand / Logo (Hidden on mobile as it is now in the toggle bar) */}
+        <div className="hidden md:flex px-6 py-5 shadow-sm">
           <Logo />
         </div>
 
@@ -217,7 +229,7 @@ const DashboardSideBar = () => {
               <span
                 className={`text-[10px] font-bold uppercase tracking-wider ${role === "admin" ? "text-yellow-700" : role === "organizer" ? "text-indigo-700" : "text-pink-700"}`}
               >
-                {role}
+               User
               </span>
             </div>
           </div>
@@ -233,7 +245,8 @@ const DashboardSideBar = () => {
               <Link
                 key={key}
                 href={href}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-700 hover:text-black hover:bg-slate-400
+                onClick={() => setIsOpen(false)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-900 hover:text-black hover:bg-slate-400
                             `}
               >
                 <span
@@ -242,8 +255,6 @@ const DashboardSideBar = () => {
                   <Icon size={20} />
                 </span>
                 <span>{label}</span>
-
-                {/* {isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-400" />} */}
               </Link>
             );
           })}

@@ -3,7 +3,7 @@ import { Button, Form, Input, Label, Modal, TextArea } from "@heroui/react";
 import { useForm } from "react-hook-form";
 import { FaImage } from "react-icons/fa";
 const CATEGORIES = [
-    "Music",
+    
     "Tech",
     "Sports",
     "Arts",

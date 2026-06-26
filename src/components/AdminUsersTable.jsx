@@ -13,21 +13,21 @@ import {
 
 const AdminUsersTable = ({ users }) => {
   return (
-    <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
+    <Card className="border border-slate-200 bg-white shadow-sm p-6 rounded-2xl">
       <div className="p-0 overflow-x-auto">
         <Table aria-label="Users table" className="min-w-[900px] w-full text-left border-collapse" removeWrapper>
           <TableContent>
-            <TableHeader className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">AVATAR</TableColumn>
-              <TableColumn isRowHeader className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">NAME</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">EMAIL</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">ROLE</TableColumn>
-              <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-slate-950/20">STATUS</TableColumn>
+            <TableHeader className="bg-slate-100 border-b border-slate-200 rounded-t-xl">
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">AVATAR</TableColumn>
+              <TableColumn isRowHeader className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">NAME</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">EMAIL</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">ROLE</TableColumn>
+              <TableColumn className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200 bg-slate-50">STATUS</TableColumn>
             </TableHeader>
             <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">No users found</p>}>
               {users.map((usr) => (
-                <TableRow key={usr._id.toString()} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0">
-                  <TableCell className="py-4 px-6 align-middle text-slate-300">
+                <TableRow key={usr._id.toString()} className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150 last:border-b-0">
+                  <TableCell className="py-4 px-6 align-middle text-slate-600">
                     <div className="h-10 w-10 relative">
                       <Image
                         fill
@@ -36,25 +36,25 @@ const AdminUsersTable = ({ users }) => {
                             ? usr.image
                             : "https://images.unsplash.com/photo-1549880181-56a44cf8a4a1"
                         }
-                        className="rounded-full object-cover border border-white/10"
+                        className="rounded-full object-cover border border-slate-200"
                         alt="avatar"
                       />
                     </div>
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-semibold text-white">
+                  <TableCell className="py-4 px-6 align-middle font-semibold text-slate-900">
                     {usr.name}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">
+                  <TableCell className="py-4 px-6 align-middle text-slate-600 font-medium">
                     {usr.email}
                   </TableCell>
                   <TableCell className="py-4 px-6 align-middle">
                     <Chip
                       size="sm"
                       className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${usr.role === "admin"
-                        ? "bg-purple-500/10 text-purple-400 border-purple-500/20"
+                        ? "bg-purple-100 text-purple-700 border-purple-200"
                         : usr.role === "organizer"
-                          ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20"
-                          : "bg-green-500/10 text-green-400 border-green-500/20"
+                          ? "bg-indigo-100 text-indigo-700 border-indigo-200"
+                          : "bg-green-100 text-green-700 border-green-200"
                         }`}
                     >
                       {usr.role}
@@ -64,8 +64,8 @@ const AdminUsersTable = ({ users }) => {
                     <Chip
                       size="sm"
                       className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${usr.isBlocked
-                        ? "bg-red-500/10 text-red-400 border-red-500/20"
-                        : "bg-green-500/10 text-green-400 border-green-500/20"
+                        ? "bg-red-100 text-red-700 border-red-200"
+                        : "bg-green-100 text-green-700 border-green-200"
                         }`}
                     >
                       {usr.isBlocked ? "Blocked" : "Active"}

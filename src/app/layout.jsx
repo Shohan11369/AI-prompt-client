@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-brand-background bg-gradient-to-r from-[#f4e8ee]/20 via-[#dce6ef]/15 to-transparent text-brand-text">
+      <body className="min-h-full flex flex-col bg-brand-background bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent text-brand-text">
         <main className="flex-grow flex flex-col">{children}</main>
         <Toaster />
       </body>

@@ -33,7 +33,7 @@ export default function RegisterPage() {
             password: data.password,
             name: data.name,
             image: imageUrl,
-            role: data.role
+            role: "attendee"
         })
 
         // console.log(signUpData, signUpError);
@@ -54,8 +54,8 @@ export default function RegisterPage() {
         <div className="min-h-screen flex items-center justify-center bg-brand-background bg-gradient-to-r from-[#f4e8ee]/20 via-[#dce6ef]/15 to-transparent text-brand-text py-10">
             <Card className="w-full max-w-lg border border-white/5  backdrop-blur-xl shadow-2xl p-4 mx-auto">
                 <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
-                    <Logo />
-                    <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-pink-500 bg-clip-text text-transparent">
+                    {/* <Logo /> */}
+                    <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-black via-slate-800 to-pink-500 bg-clip-text text-transparent">
                         Create an Account
                     </h1>
                     <p className="text-slate-400 text-sm mt-1">
@@ -71,7 +71,7 @@ export default function RegisterPage() {
                             placeholder="John Doe"
                             labelPlacement="outside"
                             startContent={<FaUser className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.name && <p className="text-red-500">{errors.name.message}</p>
@@ -84,7 +84,7 @@ export default function RegisterPage() {
                             type="email"
                             labelPlacement="outside"
                             startContent={<FaEnvelope className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.email && <p className="text-red-500">{errors.email.message}</p>
@@ -98,7 +98,7 @@ export default function RegisterPage() {
                             id="image"
                             labelPlacement="outside"
                             startContent={<FaImage className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.image && <p className="text-red-500">{errors.image.message}</p>
@@ -114,28 +114,11 @@ export default function RegisterPage() {
                             type="password"
                             labelPlacement="outside"
                             startContent={<FaLock className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.password && <p className="text-red-500">{errors.password.message}</p>
                         }
-
-                        <div className="flex flex-col gap-2 w-full">
-                            <Label htmlFor="role" className="text-sm font-medium text-slate-300">Select Role</Label>
-                            <select
-                                id="role"
-                                {...register("role", { required: "Role is required" })} className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3 rounded-lg text-slate-300">
-                                <option value="attendee">
-                                    Attendee
-                                </option>
-                                <option value="organizer">
-                                    Organizer
-                                </option>
-                            </select>
-                            {
-                                errors.role && <p className="text-red-500">{errors.role.message}</p>
-                            }
-                        </div>
 
                         <Button
                             type="submit"
@@ -145,18 +128,25 @@ export default function RegisterPage() {
                             Create Account
                         </Button>
                     </Form>
-
                     <div className="flex items-center my-4">
                         <div className="flex-grow border-t border-white/5" />
                         <span className="mx-4 text-xs text-slate-500 font-semibold uppercase">Or Sign Up With</span>
                         <div className="flex-grow border-t border-white/5" />
                     </div>
-
                     <Button
                         variant="bordered"
-                        className="w-full border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold h-11"
+                        className="w-full border-white/10 hover:bg-black/90 hover:border-white/20 text-white font-semibold h-11 bg-black"
                         radius="lg"
                         startContent={<FaGoogle className="text-pink-500" />}
+                        onClick={async () => {
+                            const { error } = await authClient.signIn.social({ 
+                                provider: "google",
+                                callbackURL: "/"
+                            });
+                            if (error) {
+                                toast.error(error.message || "Google registration failed");
+                            }
+                        }}
                     >
                         Google OAuth
                     </Button>

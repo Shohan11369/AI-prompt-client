@@ -37,12 +37,12 @@ const LoginPage = () => {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#f4e8ee]/20 via-[#dce6ef]/15 to-transparent text-brand-text">
             <Card className="w-full max-w-md border border-white/5  backdrop-blur-xl shadow-2xl p-4">
                 <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
-                    <Logo />
-                    <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-pink-500 bg-clip-text text-transparent">
+                    
+                    <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-black via-slate-800 to-pink-500 bg-clip-text text-transparent">
                         Welcome Back
                     </h1>
                     <p className="text-slate-400 text-sm mt-1">
-                        Sign in to continue exploring and managing your AI prompt collection.
+                        Sign in to continue exploring and managing your AI prompt .
                     </p>
                 </CardHeader>
                 <CardBody className="gap-4">
@@ -59,7 +59,7 @@ const LoginPage = () => {
                             type="email"
                             labelPlacement="outside"
                             startContent={<FaEnvelope className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         <Label htmlFor="password" className="text-sm font-medium text-slate-300">
                             Password
@@ -71,7 +71,7 @@ const LoginPage = () => {
                             type="password"
                             labelPlacement="outside"
                             startContent={<FaLock className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
+                            className="w-full bg-white border-white/10 text-black hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
 
                         <Button
@@ -91,9 +91,18 @@ const LoginPage = () => {
 
                     <Button
                         variant="bordered"
-                        className="w-full border-white/10 hover:bg-white/5 hover:border-white/20 text-white font-semibold h-11"
+                        className="w-full border-white/10 hover:bg-black/90 hover:border-white/20 text-white font-semibold h-11 bg-black"
                         radius="lg"
                         startContent={<FaGoogle className="text-pink-500" />}
+                        onClick={async () => {
+                            const { error } = await authClient.signIn.social({ 
+                                provider: "google",
+                                callbackURL: "/"
+                            });
+                            if (error) {
+                                toast.error(error.message || "Google login failed");
+                            }
+                        }}
                     >
                         Google Account
                     </Button>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FaRegStar, FaEye, FaRobot, FaTag } from "react-icons/fa";
 
 export default function TopOrganizers({ featuredOrgs }) {
-  // ডাটা সেফটি চেক
+ 
   const items = Array.isArray(featuredOrgs) ? featuredOrgs : [];
 
   if (items.length === 0) {
@@ -18,7 +18,7 @@ export default function TopOrganizers({ featuredOrgs }) {
   }
 
   return (
-    <section className="py-24 bg-slate-50 border-y border-slate-100 w-full">
+    <section className="py-24 bg-slate-50 border-y bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent border-slate-100 w-full">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-950 md:text-4xl">

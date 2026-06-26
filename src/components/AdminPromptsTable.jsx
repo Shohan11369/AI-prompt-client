@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 const statusStyles = {
-  approved: "bg-green-500/10 text-green-400 border-green-500/20",
-  rejected: "bg-red-500/10 text-red-400 border-red-500/20",
-  pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+  approved: "bg-green-100 text-green-700 border-green-200",
+  rejected: "bg-red-100 text-red-700 border-red-200",
+  pending: "bg-yellow-100 text-yellow-700 border-yellow-200",
 };
 
 const AdminPromptsTable = ({ prompts }) => {
@@ -46,22 +46,22 @@ const AdminPromptsTable = ({ prompts }) => {
   return (
     <div className="p-0 overflow-x-auto">
         <table className="w-full min-w-[800px] text-left border-collapse">
-            <thead className="bg-slate-950/40 border-b border-white/5 rounded-t-xl">
+            <thead className="bg-slate-100 border-b border-slate-200 rounded-t-xl">
                 <tr>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">TITLE</th>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">CREATOR</th>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">COPY COUNT</th>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">STATUS</th>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">FEEDBACK</th>
-                    <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ACTIONS</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">TITLE</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">CREATOR</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">COPY COUNT</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">STATUS</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">FEEDBACK</th>
+                    <th className="py-4 px-6 text-slate-500 font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 {prompts.map((p) => (
-                <tr key={p._id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150">
-                    <td className="py-4 px-6 font-bold text-white">{p.title}</td>
-                    <td className="py-4 px-6 text-slate-300">{p.creatorName || p.organizationEmail}</td>
-                    <td className="py-4 px-6 text-slate-300">{p.copyCount || 0}</td>
+                <tr key={p._id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150">
+                    <td className="py-4 px-6 font-bold text-slate-900">{p.title}</td>
+                    <td className="py-4 px-6 text-slate-600">{p.creatorName || p.organizationEmail}</td>
+                    <td className="py-4 px-6 text-slate-600">{p.copyCount || 0}</td>
                     <td className="py-4 px-6">
                         <Chip size="sm" className={`font-bold uppercase text-[10px] tracking-wider border px-2.5 py-1 ${statusStyles[p.status] || statusStyles.pending}`}>
                             {p.status || 'pending'}

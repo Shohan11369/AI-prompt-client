@@ -23,12 +23,12 @@ export default async function ProfilePage() {
         <img src={user.image} alt="Profile" className="w-24 h-24 rounded-full border-2 border-pink-500/60" />
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Role:</strong> {user.role}</p>
+        <p><strong>Role:</strong> User</p>
         {user.role === 'organizer' && <p><strong>Total Prompts:</strong> {totalPrompts}</p>}
         <p><strong>Subscription:</strong> {isPremium ? "Premium" : "Free"}</p>
         
         {!isPremium && (
-          <Link href="/dashboard/attendee/payments" className="bg-pink-600 text-white px-4 py-2 rounded-xl shadow-md block w-fit hover:bg-pink-700 transition">
+          <Link href="/events" className="bg-pink-600 text-white px-4 py-2 rounded-xl shadow-md block w-fit hover:bg-pink-700 transition">
             Upgrade to Premium
           </Link>
         )}

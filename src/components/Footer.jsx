@@ -3,7 +3,7 @@ import { FaRobot, FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-ico
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 pt-16 pb-12 mt-auto text-slate-800">
+    <footer className="border-t border-slate-200 bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent pt-16 pb-12 mt-auto text-slate-800">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-2">
