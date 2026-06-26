@@ -1,13 +1,14 @@
 "use client"; 
 
 import { useRouter } from "next/navigation";
+import { baseURL } from "@/lib/api/baseUrl";
 
 export default function StatusActions({ id }) {
   const router = useRouter();
 
   const updateStatus = async (status) => {
-  
-    const res = await fetch(`http://localhost:8000/api/admin/enrollments/${id}/status`, {
+
+    const res = await fetch(`${baseURL}/api/admin/enrollments/${id}/status`, {
       method: "PATCH", 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
