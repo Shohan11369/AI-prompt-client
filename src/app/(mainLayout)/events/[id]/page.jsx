@@ -79,7 +79,7 @@ export default async function EventDetailsPage({ params }) {
 
                     {/* Description */}
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-bold text-slate-950">Event Description</h2>
+                        <h2 className="text-2xl font-bold text-slate-950">Prompts Description</h2>
                         <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line">
                             {event?.description || "Master this AI tool with our comprehensive workflow. Learn implementation guidelines, best prompts, and optimization techniques for your day-to-day productivity."}
                         </p>

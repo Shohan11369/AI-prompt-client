@@ -5,7 +5,7 @@ import { Card, Button, Input } from "@heroui/react";
 import { FaCheck } from "react-icons/fa";
 import { useSession } from "@/lib/auth-client";
 
-// 💡 এখানে ticketPrice এর পাশাপাশি price নামেও প্রোপস রিসিভ করার ব্যাকআপ রাখা হলো
+
 export default function BookingWidget({
   ticketPrice,
   price, 
@@ -19,7 +19,6 @@ export default function BookingWidget({
 
   const isSoldOut = availableSeats <= 0;
 
-  // 💡 ডাটাবেজে ফিল্ডের নাম ticketPrice বা price যাই থাকুক, এটি নিখুঁতভাবে রীড করবে
   const finalPrice = ticketPrice !== undefined ? ticketPrice : price;
   const safePrice = typeof finalPrice === 'number' ? finalPrice : Number(finalPrice) || 0;
 
@@ -51,7 +50,7 @@ export default function BookingWidget({
     <Card className="bg-white border border-slate-200 shadow-xl sticky top-24" radius="lg">
       {user?.role === "attendee" ? (
         <div className="p-8 space-y-6">
-          <h3 className="text-xl font-bold text-slate-950">Booking Details</h3>
+          <h3 className="text-xl font-bold text-slate-950">Buy Details</h3>
 
           {/* Stat list */}
           <div className="space-y-4">
@@ -94,7 +93,7 @@ export default function BookingWidget({
             }`}
             radius="lg"
           >
-            {isSoldOut ? "Sold Out" : "Book Ticket Now"}
+            {isSoldOut ? "Sold Out" : "Purchase Now"}
           </Button>
 
           <div className="flex items-center gap-2 text-[11px] text-slate-500 text-center justify-center pt-2">
@@ -105,7 +104,7 @@ export default function BookingWidget({
       ) : (
         <Card className="p-6 bg-slate-50 border border-slate-200">
           <p className="text-red-600 text-center font-medium">
-            {user?.role ? user.role.toUpperCase() : "GUEST"} cannot book 
+            {user?.role ? user.role.toUpperCase() : "Without Login"} cannot buy
           </p>
         </Card>
       )}

@@ -30,17 +30,16 @@ export default async function PaymentSuccess({ searchParams }) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(paymentData),
-    cache: "no-store", // ডাটা ফ্রেশ রাখার জন্য
+    cache: "no-store", 
   });
 
-  // সফল হলে সার্ভার অ্যাকশন কল করুন
   if (res.ok) {
     await handlePaymentSuccessRedirect();
   }
 
-  // যদি res.ok না হয়, তবে নিচে নিচের UI দেখাবে
+  
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-[#080c16] px-6 py-12">
+    <div className="min-h-[80vh] flex items-center justify-center  bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent px-6 py-12">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950 -z-10" />
 
       <Card className="w-full max-w-lg border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4">
