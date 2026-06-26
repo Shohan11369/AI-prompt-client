@@ -17,25 +17,25 @@ const ManageEventClient = ({ events }) => {
                 <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
                     <div className="p-0 overflow-x-auto">
 
-                        <Table aria-label="Manage Events Table" >
+                        <Table aria-label="Manage Table" >
                             <TableContent>
                                 <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>Name</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">CATEGORY</TableColumn>
+                                    {/* <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">CATEGORY</TableColumn> */}
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">DATE</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">TICKET PRICE</TableColumn>
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">AVAILABLE SEATS</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20"> PRICE</TableColumn>
+                                    
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">STATUS</TableColumn>
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">ACTIONS</TableColumn>
                                 </TableHeader>
                                 <TableBody emptyContent={<p className="text-slate-500 py-10 text-center font-medium">You haven not added any events yet.</p>}>
                                     {events?.map((ev) => (
                                         <TableRow key={ev._id} className="border-b border-white/5 hover:bg-white/5 transition-colors duration-150 last:border-b-0">
-                                            <TableCell className="py-4 px-6 align-middle font-bold text-white"><span className="line-clamp-1 truncate max-w-[150px]">{ev.title}</span></TableCell>
-                                            <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">{ev.category}</TableCell>
-                                            <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">{ev.date}</TableCell>
+                                            <TableCell className="py-4 px-6 align-middle font-bold text-black"><span className="line-clamp-1 truncate max-w-[150px]">{ev.title}</span></TableCell>
+                                            {/* <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">{ev.category}</TableCell> */}
+                                            <TableCell className="py-4 px-6 align-middle text-slate-500 font-medium">{ev.date}</TableCell>
                                             <TableCell className="py-4 px-6 align-middle font-semibold text-green-400">${ev.price?.toFixed(2)}</TableCell>
-                                            <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">{ev.capacity} seats</TableCell>
+                                            
                                             <TableCell className="py-4 px-6 align-middle">
                                                 <Chip
                                                     size="sm"

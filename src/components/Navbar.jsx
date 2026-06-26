@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaTicketAlt, FaUser, FaSignOutAlt, FaThLarge } from "react-icons/fa";
+import { FaTicketAlt, FaUser, FaSignOutAlt, FaThLarge, FaBars, FaTimes } from "react-icons/fa";
 import Logo from "./Logo";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +34,33 @@ export default function Navbar() {
     router.push("/");
   };
 
-
+  const navLinks = (
+    <>
+      <Link
+        href="/"
+        onClick={() => setMobileMenuOpen(false)}
+        className={`text-sm font-medium transition-colors ${pathname === "/" ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
+      >
+        Home
+      </Link>
+      <Link
+        href="/events"
+        onClick={() => setMobileMenuOpen(false)}
+        className={`text-sm font-medium transition-colors ${pathname.startsWith("/events") ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
+      >
+        All AI Prompt
+      </Link>
+      {session && session?.user && (
+        <Link
+          href={`/dashboard/${session?.user?.role}`}
+          onClick={() => setMobileMenuOpen(false)}
+          className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard") ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
+        >
+          Dashboard
+        </Link>
+      )}
+    </>
+  );
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-gradient-to-r from-pink-900/10 via-brand-secondary/10 to-transparent backdrop-blur-md py-3.5 px-6 text-slate-900">
@@ -41,36 +68,15 @@ export default function Navbar() {
         {/* LOGO */}
         <Logo />
 
-        {/* NAVIGATION LINKS */}
+        {/* NAVIGATION LINKS (Desktop) */}
         <div className="hidden sm:flex items-center gap-8">
-          <Link
-            href="/"
-            className={`text-sm font-medium transition-colors ${pathname === "/" ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
-          >
-            Home
-          </Link>
-          <Link
-            href="/events"
-            className={`text-sm font-medium transition-colors ${pathname.startsWith("/events") ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
-          >
-            All AI Prompt
-          </Link>
-          {session && session?.user && (
-            <Link
-              href={`/dashboard/${session?.user?.role}`}
-              className={`text-sm font-medium transition-colors ${pathname.startsWith("/dashboard") ? "text-brand-primary font-semibold" : "text-slate-900 hover:text-brand-primary"}`}
-            >
-              Dashboard
-            </Link>
-          )}
+          {navLinks}
         </div>
 
         {/* RIGHT ACTIONS */}
         <div className="flex items-center gap-4">
-
-
           {!session && (
-            <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-3">
               <Link href="/login">
                 <button
                   className="inline-flex items-center justify-center font-semibold text-xs text-slate-800 hover:text-slate-950 h-9 px-4 rounded-xl hover:bg-white/5 transition"
@@ -115,24 +121,13 @@ export default function Navbar() {
 
                   {/* Actions */}
                   <Link
-                    href="/dashboard/organizer"
+                    href={`/dashboard/${session.user.role}`}
                     onClick={() => setDropdownOpen(false)}
                     className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-xs font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-50 transition cursor-pointer"
                   >
                     <FaThLarge className="text-slate-500 text-sm shrink-0" />
                     <span>My Dashboard</span>
                   </Link>
-
-                  <Link
-                    href={`/dashboard/${session.user.role}`}
-                    onClick={() => setDropdownOpen(false)}
-                    className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-xs font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-50 transition cursor-pointer"
-                  >
-                    <FaUser className="text-slate-500 text-sm shrink-0" />
-                    <span>Profile Settings</span>
-                  </Link>
-
-                  <div className="border-t border-slate-100 my-1.5" />
 
                   <button
                     onClick={handleLogout}
@@ -146,8 +141,28 @@ export default function Navbar() {
             </div>
           )}
 
+          {/* Mobile Menu Toggle */}
+          <button
+            className="sm:hidden text-slate-900"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu Content */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden mt-4 bg-white/90 backdrop-blur-lg border border-slate-200 rounded-2xl shadow-xl p-6 flex flex-col gap-4 animate-in slide-in-from-top-4 duration-200">
+          {navLinks}
+          {!session && (
+            <>
+              <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-900 hover:text-brand-primary">Login</Link>
+              <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-brand-primary">Register</Link>
+            </>
+          )}
+        </div>
+      )}
     </nav>
   );
 }

@@ -229,7 +229,7 @@ const DashboardSideBar = () => {
               <span
                 className={`text-[10px] font-bold uppercase tracking-wider ${role === "admin" ? "text-yellow-700" : role === "organizer" ? "text-indigo-700" : "text-pink-700"}`}
               >
-               User
+               {role}
               </span>
             </div>
           </div>

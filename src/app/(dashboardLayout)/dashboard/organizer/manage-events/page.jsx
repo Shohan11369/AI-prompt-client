@@ -21,8 +21,8 @@ const ManageEvent = async () => {
     return (
         <div>
             <DashboardHeading
-                title="Manage Event"
-                description="Manage event"
+                title="Manage AI Prompts"
+                description="Manage Prompts"
             />
             
             <Suspense fallback={<Spinner />}>

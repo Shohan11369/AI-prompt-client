@@ -41,8 +41,8 @@ const AdminPromptsPage = async () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Prompts</span>
-            <h2 className="text-3xl font-extrabold text-white">{enrichedPrompts.length}</h2>
+            <span className="text-black text-xs font-bold uppercase tracking-wider">Total Prompts</span>
+            <h2 className="text-3xl font-extrabold text-gray-400">{enrichedPrompts.length}</h2>
         </Card>
       </div>
 

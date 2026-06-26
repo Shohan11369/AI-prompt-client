@@ -89,9 +89,9 @@ const AddEventPage = () => {
           radius="lg"
         >
           <CardHeader className="flex flex-col gap-1 pb-4 border-b border-white/5 p-6">
-            <h3 className="text-xl font-bold text-white">Host a New Event</h3>
+            <h3 className="text-xl font-bold text-black">Host a New Prompts</h3>
             <p className="text-slate-400 text-xs">
-              Fill out the detailed event information. Banners and dates are
+              Fill out the detailed information. Banners and dates are
               required.
             </p>
           </CardHeader>
@@ -178,7 +178,7 @@ const AddEventPage = () => {
                   )}
                 </div>
 
-                <div className="w-full">
+                {/* <div className="w-full">
                   <Label htmlFor="location">Location</Label>
                   <select
                     id="location"
@@ -206,7 +206,7 @@ const AddEventPage = () => {
                       {errors.location.message}
                     </p>
                   )}
-                </div>
+                </div> */}
               </div>
 
               {/* Date + Price + Capacity */}

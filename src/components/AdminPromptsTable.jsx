@@ -58,7 +58,7 @@ const AdminPromptsTable = ({ prompts }) => {
             </thead>
             <tbody>
                 {prompts.map((p) => (
-                <tr key={p._id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150">
+                <tr key={p._id} className="border-b border-slate-200 bg-slate-100 hover:bg-slate-50 transition-colors duration-150">
                     <td className="py-4 px-6 font-bold text-slate-900">{p.title}</td>
                     <td className="py-4 px-6 text-slate-600">{p.creatorName || p.organizationEmail}</td>
                     <td className="py-4 px-6 text-slate-600">{p.copyCount || 0}</td>

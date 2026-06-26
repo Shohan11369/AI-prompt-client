@@ -9,7 +9,7 @@ import { FaCrown, FaCalendarAlt, FaUsers, FaDollarSign } from "react-icons/fa";
 
 const OrganizerOverviewPage = async () => {
   const user = await getUser();
-  const isPremium = user?.isPremium;
+  // const isPremium = user?.isPremium;
   const events = user?.email ? await myEvents(user.email) : [];
   const attendees = user?.email ? await getOrganizerAttendees(user.email) : [];
 
@@ -33,7 +33,7 @@ const OrganizerOverviewPage = async () => {
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
-                Total Hosted Events
+                Total Ai Prompts
               </span>
               <h2 className="text-3xl font-extrabold text-slate-950">
                 {stats.totalEvents}
@@ -63,7 +63,7 @@ const OrganizerOverviewPage = async () => {
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
-                Unique Attendees
+                Unique Users
               </span>
               <h2 className="text-3xl font-extrabold text-slate-950">
                 {stats.uniqueAttendees}
@@ -89,44 +89,7 @@ const OrganizerOverviewPage = async () => {
         </Card>
       </div>
 
-      {!isPremium ? (
-        <Card
-          className="border border-yellow-500/20 bg-brand-background/40 shadow-inner relative overflow-hidden"
-          radius="lg"
-        >
-          <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
-                <FaCrown className="text-yellow-600" /> Unlock Unlimited Event
-                Creation
-              </h3>
-              <p className="text-slate-600 text-xs max-w-xl leading-relaxed">
-                Standard organizer accounts are limited to{" "}
-                <strong>3 events</strong>. Upgrade to our Premium Package for{" "}
-                <strong>$49.00</strong> to host unlimited events.
-              </p>
-            </div>
-            <UpgradePremiumButton />
-          </div>
-        </Card>
-      ) : (
-        <Card
-          className="border border-green-500/20 bg-brand-background/40 shadow-inner relative overflow-hidden"
-          radius="lg"
-        >
-          <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
-                <FaCrown className="text-green-600" /> Welcome to premium
-                dashboard
-              </h3>
-              <p className="text-slate-600 text-xs max-w-xl leading-relaxed">
-                You can create more then 3 events now...
-              </p>
-            </div>
-          </div>
-        </Card>
-      )}
+      
     </div>
   );
 };

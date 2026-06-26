@@ -70,22 +70,22 @@ const OrganizerEnrollmentsPage = async () => {
     <div className="space-y-6 mt-6">
       <DashboardHeading
         title="Enrollments"
-        description="Bookings for your events"
+        description="Bookings for your Ai course"
       />
       
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
-            <h2 className="text-3xl font-extrabold text-white">{rows.length}</h2>
+            <span className="text-black text-xs font-bold uppercase tracking-wider">Total Enrollments</span>
+            <h2 className="text-3xl font-extrabold text-gray-400">{rows.length}</h2>
         </Card>
         <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
-            <h2 className="text-3xl font-extrabold text-white">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
+            <span className="text-black text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
+            <h2 className="text-3xl font-extrabold text-gray-400">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
         </Card>
         <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Revenue</span>
-            <h2 className="text-3xl font-extrabold text-white">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
+            <span className="text-black text-xs font-bold uppercase tracking-wider">Total Revenue</span>
+            <h2 className="text-3xl font-extrabold text-gray-400">${rows.reduce((sum, row) => sum + row.amount, 0).toFixed(2)}</h2>
         </Card>
       </div>
 
@@ -97,9 +97,9 @@ const OrganizerEnrollmentsPage = async () => {
           <table className="w-full min-w-[800px] text-left border-collapse">
             <thead className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
               <tr>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ATTENDEE</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">Name</th>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EMAIL</th>
-                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">EVENT</th>
+                <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">Ai Prompts</th>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">PAID</th>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">STATUS</th>
                 <th className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5">ACTIONS</th>
