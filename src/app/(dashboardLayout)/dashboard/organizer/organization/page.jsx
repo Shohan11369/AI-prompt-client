@@ -13,7 +13,7 @@ import { FaImage } from "react-icons/fa";
 const Organization = () => {
     const { data: session } = useSession();
     const [myOrg, setMyOrg] = useState(null);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
     useEffect(() => {
@@ -60,10 +60,10 @@ const Organization = () => {
             <DashboardHeading title="My organization Profile" description=" Update organization logo, profile, website and description"
             />
             <div className="mt-6 space-y-6 max-w-3xl">
-                <Card className="border border-white/5 bg-brand-background/40 backdrop-blur-xl shadow-2xl rounded-2xl" radius="lg">
-                    <CardHeader className="flex flex-col gap-1 pb-4 border-b border-white/5 p-6">
-                        <h3 className="text-xl font-bold text-white">Organization Details</h3>
-                        <p className="text-slate-400 text-xs">Review and edit your organization credentials.</p>
+                <Card className="shadow-inner border border-brand-primary/20 bg-brand-background/40 backdrop-blur-xl rounded-2xl" radius="lg">
+                    <CardHeader className="flex flex-col gap-1 pb-4 border-b border-brand-primary/10 p-6">
+                        <h3 className="text-xl font-bold text-slate-950">Organization Details</h3>
+                        <p className="text-slate-600 text-xs">Review and edit your organization credentials.</p>
                     </CardHeader>
                     <div className="p-6">
                         <Form
@@ -72,7 +72,7 @@ const Organization = () => {
                             <Input
                                 defaultValue={myOrg?.organizationName}
                                 {...register("organizationName", { required: "Organization name is Required" })}
-                                id="organizationName" label="Organization Name" labelPlacement="outside" placeholder="TechEvents Corp" required className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary" />
+                                id="organizationName" label="Organization Name" labelPlacement="outside" placeholder="TechEvents Corp" required className="w-full bg-brand-background/50 border-brand-primary/10 hover:border-brand-primary/50 focus-within:!border-brand-primary text-slate-900" />
                             {
                                 errors.name && <p className="text-red-500">{errors.name.message}</p>
                             }
@@ -83,8 +83,8 @@ const Organization = () => {
                                 id="logo"
                                 placeholder="https://example.com/avatar.jpg"
                                 labelPlacement="outside"
-                                startContent={<FaImage className="text-slate-400 text-sm" />}
-                                className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary"
+                                startContent={<FaImage className="text-slate-500 text-sm" />}
+                                className="w-full bg-brand-background/50 border-brand-primary/10 hover:border-brand-primary/50 focus-within:!border-brand-primary text-slate-900"
                             />
                             {
                                 errors.logo && <p className="text-red-500">{errors.logo.message}</p>
@@ -95,7 +95,7 @@ const Organization = () => {
                             <Input
                                 defaultValue={myOrg?.website}
                                 {...register("website", { required: "Organization Website is Required" })}
-                                id="website" label="Organization Website" labelPlacement="outside" placeholder="techevents.corp" required className="w-full bg-brand-background/50 border-white/10 hover:border-brand-primary/50 focus-within:!border-brand-primary" />
+                                id="website" label="Organization Website" labelPlacement="outside" placeholder="techevents.corp" required className="w-full bg-brand-background/50 border-brand-primary/10 hover:border-brand-primary/50 focus-within:!border-brand-primary text-slate-900" />
 
                             {
                                 errors.website && <p className="text-red-500">{errors.website.message}</p>
@@ -104,13 +104,22 @@ const Organization = () => {
                             <TextArea
                                 defaultValue={myOrg?.description}
                                 {...register("description", { required: "Description is Required" })}
-                                id="description" label="Description" labelPlacement="outside" placeholder="Hosting global developer conferences and software hacking marathons." required className="w-full bg-brand-background/50 border border-white/10 rounded-xl focus:outline-none min-h-[100px] text-white text-sm" />
+                                id="description" label="Description" labelPlacement="outside" placeholder="Hosting global developer conferences and software hacking marathons." required className="w-full bg-brand-background/50 border border-brand-primary/10 rounded-xl focus:outline-none min-h-[100px] text-slate-900 text-sm" />
                             {
                                 errors.description && <p className="text-red-500">{errors.description.message}</p>
                             }
 
                             <div className="flex gap-4">
                                 <Button type="submit" className="bg-brand-secondary hover:bg-indigo-500 text-white font-bold h-11 px-6 shadow-lg" radius="lg">Save Changes</Button>
+                                <Button 
+                                    type="button" 
+                                    variant="bordered"
+                                    onClick={() => reset({ organizationName: "", website: "", description: "" })}
+                                    className="border-slate-300 text-slate-700 hover:bg-slate-100 font-bold h-11 px-6" 
+                                    radius="lg"
+                                >
+                                    Clear
+                                </Button>
                             </div>
                         </Form>
                     </div>

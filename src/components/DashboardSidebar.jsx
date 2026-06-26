@@ -1,5 +1,5 @@
 import Logo from "@/components/Logo";
-import { useSession } from "@/lib/auth-client";
+import { useSession, authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -18,7 +18,10 @@ import {
 
 const DashboardSideBar = () => {
   const { data: session } = useSession();
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    await authClient.signOut();
+    window.location.href = "/";
+  };
 
   const orgnaizerMenu = [
     {
@@ -185,16 +188,16 @@ const DashboardSideBar = () => {
             : null;
 
   return (
-    <aside className="w-64 h-screen border-r border-white/5">
+    <aside className="w-64 h-screen shadow-lg">
       <div className="h-full flex flex-col bg-slate-300 backdrop-blur-xl text-black">
         {/* Brand / Logo */}
-        <div className="px-6 py-5 border-b border-white/5">
+        <div className="px-6 py-5 shadow-sm">
           <Logo />
         </div>
 
         {/* User Profile */}
-        <div className="px-6 py-5 border-b border-white/5">
-          <div className="flex items-center gap-3">
+        <div className="px-6 py-5 shadow-sm bg-slate-200/50">
+          <div className="flex items-center gap-3 p-3 bg-white/40 rounded-xl shadow-inner border border-white/20">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-500/60 shrink-0">
               <Image
                 width={40}
@@ -208,11 +211,11 @@ const DashboardSideBar = () => {
               />
             </div>
             <div className="overflow-hidden">
-              <p className="text-white text-sm font-bold truncate leading-tight">
+              <p className="text-black text-sm font-bold truncate leading-tight">
                 {session?.user?.name}
               </p>
               <span
-                className={`text-[10px] font-bold uppercase tracking-wider ${role === "admin" ? "text-yellow-400" : role === "organizer" ? "text-indigo-400" : "text-pink-400"}`}
+                className={`text-[10px] font-bold uppercase tracking-wider ${role === "admin" ? "text-yellow-700" : role === "organizer" ? "text-indigo-700" : "text-pink-700"}`}
               >
                 {role}
               </span>
@@ -222,7 +225,7 @@ const DashboardSideBar = () => {
 
         {/* Navigation Menu */}
         <nav className="grow overflow-y-auto px-3 py-4 space-y-1">
-          <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest px-3 pb-2">
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest px-3 pb-2">
             Navigation
           </p>
           {manuItems?.map(({ key, label, icon: Icon, href }) => {
@@ -230,11 +233,11 @@ const DashboardSideBar = () => {
               <Link
                 key={key}
                 href={href}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-400 hover:text-white hover:bg-white/5"
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer text-slate-700 hover:text-black hover:bg-slate-400
                             `}
               >
                 <span
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-white/5 text-slate-400`}
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-black/5 text-slate-700`}
                 >
                   <Icon size={20} />
                 </span>
@@ -247,21 +250,21 @@ const DashboardSideBar = () => {
         </nav>
 
         {/* Bottom Links */}
-        <div className="px-3 py-4 border-t border-white/5 space-y-1">
+        <div className="px-3 py-4 shadow-inner space-y-1">
           <Link
             href="/"
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-150"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-black hover:bg-slate-400 transition-all duration-150"
           >
-            <span className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+            <span className="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center shrink-0">
               <FaHome size={13} />
             </span>
             Back to Site
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-red-400 hover:bg-red-500/5 transition-all duration-150 cursor-pointer"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-red-700 hover:bg-red-400/20 transition-all duration-150 cursor-pointer"
           >
-            <span className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+            <span className="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center shrink-0">
               <FaSignOutAlt size={13} />
             </span>
             Sign Out

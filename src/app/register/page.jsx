@@ -51,35 +51,32 @@ export default function RegisterPage() {
     console.log(errors);
 
     return (
-        <div>
-            <Card className="w-full max-w-lg border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4 mx-auto">
+        <div className="min-h-screen flex items-center justify-center bg-brand-background bg-gradient-to-r from-[#f4e8ee]/20 via-[#dce6ef]/15 to-transparent text-brand-text py-10">
+            <Card className="w-full max-w-lg border border-white/5  backdrop-blur-xl shadow-2xl p-4 mx-auto">
                 <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
                     <Logo />
                     <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-pink-500 bg-clip-text text-transparent">
                         Create an Account
                     </h1>
                     <p className="text-slate-400 text-sm mt-1">
-                        Join Ticketo to book premium events or host your own organization.
+                        Sign up to explore manage your own AI prompt collection.
                     </p>
                 </CardHeader>
                 <CardBody className="gap-4">
                     <Form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
-                        <Label htmlFor="name">Full Name</Label>
-
-
-
+                        <Label htmlFor="name" className="text-sm font-medium text-slate-300">Full Name</Label>
                         <Input
                             {...register("name", { required: "Name is Required" })}
                             id="name"
                             placeholder="John Doe"
                             labelPlacement="outside"
                             startContent={<FaUser className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.name && <p className="text-red-500">{errors.name.message}</p>
                         }
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email" className="text-sm font-medium text-slate-300">Email Address</Label>
                         <Input
                             {...register("email", { required: "Email is Required" })}
                             id="email"
@@ -87,53 +84,47 @@ export default function RegisterPage() {
                             type="email"
                             labelPlacement="outside"
                             startContent={<FaEnvelope className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.email && <p className="text-red-500">{errors.email.message}</p>
                         }
-                        <Label htmlFor="image">Profile Image URL</Label>
+                        <Label htmlFor="image" className="text-sm font-medium text-slate-300">Profile Image</Label>
 
                         <Input
                             {...register("image", { required: "image is Required" })}
                             type="file"
                             accept="image/*"
                             id="image"
-                            placeholder="https://example.com/avatar.jpg"
                             labelPlacement="outside"
                             startContent={<FaImage className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.image && <p className="text-red-500">{errors.image.message}</p>
                         }
 
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password" className="text-sm font-medium text-slate-300">Password</Label>
                         <Input
                             {...register("password", {
                                 required: "Password is required",
-                                // pattern: {
-                                //     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
-                                //     message:
-                                //         "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, and one number",
-                                // },
                             })}
                             id="password"
                             placeholder="••••••••"
                             type="password"
                             labelPlacement="outside"
                             startContent={<FaLock className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
                         {
                             errors.password && <p className="text-red-500">{errors.password.message}</p>
                         }
 
                         <div className="flex flex-col gap-2 w-full">
-                            <Label htmlFor="role" className="text-sm font-semibold text-slate-300">Select Role</Label>
+                            <Label htmlFor="role" className="text-sm font-medium text-slate-300">Select Role</Label>
                             <select
                                 id="role"
-                                {...register("role", { required: "Role is required" })} className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3">
+                                {...register("role", { required: "Role is required" })} className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 p-3 rounded-lg text-slate-300">
                                 <option value="attendee">
                                     Attendee
                                 </option>

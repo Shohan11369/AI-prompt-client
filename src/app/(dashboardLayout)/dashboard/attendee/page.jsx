@@ -31,11 +31,11 @@ const AttendeeOverviewPage = async () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* Total Spent */}
-        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Total Spent
               </span>
 
@@ -44,7 +44,7 @@ const AttendeeOverviewPage = async () => {
               </h2>
             </div>
 
-            <div className="p-3.5 bg-green-500/10 text-green-600 rounded-2xl border border-green-500/20">
+            <div className="p-3.5 bg-green-500/10 text-green-700 rounded-2xl border border-green-500/20">
               <FaDollarSign size={24} />
             </div>
 
@@ -52,11 +52,11 @@ const AttendeeOverviewPage = async () => {
         </Card>
 
         {/* Booked */}
-        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Booked
               </span>
 
@@ -73,12 +73,12 @@ const AttendeeOverviewPage = async () => {
         </Card>
 
         {/* Upcoming */}
-        <Card className="bg-white border border-slate-200 shadow-xl" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex items-center justify-between">
 
             <div className="space-y-1">
-              <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">
-                Upcoming Events
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
+                Upcoming AI
               </span>
 
               <h2 className="text-3xl font-extrabold text-slate-950">

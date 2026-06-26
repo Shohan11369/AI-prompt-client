@@ -29,13 +29,13 @@ const OrganizerOverviewPage = async () => {
     <div className="space-y-6 mt-6">
       <DashboardHeading title="Overview" description="Dashboard Overview" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="glass border-white/5" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Total Hosted Events
               </span>
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 {stats.totalEvents}
               </h2>
             </div>
@@ -44,45 +44,45 @@ const OrganizerOverviewPage = async () => {
             </div>
           </div>
         </Card>
-        <Card className="glass border-white/5" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Total Enrollments
               </span>
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 {stats.totalEnrollments}
               </h2>
             </div>
-            <div className="p-3.5 bg-indigo-500/10 text-indigo-400 rounded-2xl border border-indigo-500/20">
+            <div className="p-3.5 bg-indigo-500/10 text-indigo-700 rounded-2xl border border-indigo-500/20">
               <FaUsers size={24} />
             </div>
           </div>
         </Card>
-        <Card className="glass border-white/5" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Unique Attendees
               </span>
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-950">
                 {stats.uniqueAttendees}
               </h2>
             </div>
-            <div className="p-3.5 bg-blue-500/10 text-blue-400 rounded-2xl border border-blue-500/20">
+            <div className="p-3.5 bg-blue-500/10 text-blue-700 rounded-2xl border border-blue-500/20">
               <FaUsers size={24} />
             </div>
           </div>
         </Card>
-        <Card className="glass border-white/5" radius="lg">
+        <Card className="bg-brand-background/40 border border-brand-primary/20 shadow-inner" radius="lg">
           <div className="p-6 flex flex-row items-center justify-between">
             <div className="space-y-1">
-              <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider">
                 Estimated Revenue
               </span>
-              <h2 className="text-3xl font-extrabold text-white">{`$${stats.estimatedRevenue.toFixed(2)}`}</h2>
+              <h2 className="text-3xl font-extrabold text-slate-950">{`$${stats.estimatedRevenue.toFixed(2)}`}</h2>
             </div>
-            <div className="p-3.5 bg-green-500/10 text-green-400 rounded-2xl border border-green-500/20">
+            <div className="p-3.5 bg-green-500/10 text-green-700 rounded-2xl border border-green-500/20">
               <FaDollarSign size={24} />
             </div>
           </div>
@@ -91,16 +91,16 @@ const OrganizerOverviewPage = async () => {
 
       {!isPremium ? (
         <Card
-          className="border border-yellow-500/20 bg-linear-to-r from-yellow-500/5 via-amber-600/5 to-transparent relative overflow-hidden"
+          className="border border-yellow-500/20 bg-brand-background/40 shadow-inner relative overflow-hidden"
           radius="lg"
         >
           <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <FaCrown className="text-yellow-400" /> Unlock Unlimited Event
+              <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
+                <FaCrown className="text-yellow-600" /> Unlock Unlimited Event
                 Creation
               </h3>
-              <p className="text-slate-400 text-xs max-w-xl leading-relaxed">
+              <p className="text-slate-600 text-xs max-w-xl leading-relaxed">
                 Standard organizer accounts are limited to{" "}
                 <strong>3 events</strong>. Upgrade to our Premium Package for{" "}
                 <strong>$49.00</strong> to host unlimited events.
@@ -111,16 +111,16 @@ const OrganizerOverviewPage = async () => {
         </Card>
       ) : (
         <Card
-          className="border border-green-500/20 bg-linear-to-r from-green-500/5 via-amber-600/5 to-transparent relative overflow-hidden"
+          className="border border-green-500/20 bg-brand-background/40 shadow-inner relative overflow-hidden"
           radius="lg"
         >
           <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <FaCrown className="text-green-400" /> Welcome to premium
+              <h3 className="text-xl font-bold text-slate-950 flex items-center gap-2">
+                <FaCrown className="text-green-600" /> Welcome to premium
                 dashboard
               </h3>
-              <p className="text-slate-400 text-xs max-w-xl leading-relaxed">
+              <p className="text-slate-600 text-xs max-w-xl leading-relaxed">
                 You can create more then 3 events now...
               </p>
             </div>

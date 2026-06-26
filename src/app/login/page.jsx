@@ -34,44 +34,44 @@ const LoginPage = () => {
 
     }
     return (
-        <div className="mx-auto">
-            <Card className="w-full max-w-md border border-white/5 bg-slate-950/70 backdrop-blur-xl shadow-2xl p-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#f4e8ee]/20 via-[#dce6ef]/15 to-transparent text-brand-text">
+            <Card className="w-full max-w-md border border-white/5  backdrop-blur-xl shadow-2xl p-4">
                 <CardHeader className="flex flex-col gap-1 items-center pb-6 text-center">
                     <Logo />
                     <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-pink-500 bg-clip-text text-transparent">
                         Welcome Back
                     </h1>
                     <p className="text-slate-400 text-sm mt-1">
-                        Access your Ticketo account and purchase event tickets.
+                        Sign in to continue exploring and managing your AI prompt collection.
                     </p>
                 </CardHeader>
                 <CardBody className="gap-4">
                     <Form
                         onSubmit={handleSubmit(onSubmit)}
                         className="space-y-4 w-full">
-                        <Label htmlFor="email">
+                        <Label htmlFor="email" className="text-sm font-medium text-slate-300">
                             Email Address
                         </Label>
                         <Input
-                            {...register("email", { required: "email is Required" })}
+                            {...register("email", { required: "Email is required" })}
                             id="email"
                             placeholder="john@example.com"
                             type="email"
                             labelPlacement="outside"
                             startContent={<FaEnvelope className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
-                        <Label htmlFor="password">
+                        <Label htmlFor="password" className="text-sm font-medium text-slate-300">
                             Password
                         </Label>
                         <Input
-                            {...register("password", { required: "Password is Required" })}
+                            {...register("password", { required: "Password is required" })}
                             id="password"
                             placeholder="••••••••"
                             type="password"
                             labelPlacement="outside"
                             startContent={<FaLock className="text-slate-400 text-sm" />}
-                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500"
+                            className="w-full bg-slate-900/50 border-white/10 hover:border-pink-500/50 focus-within:!border-pink-500 rounded-lg"
                         />
 
                         <Button

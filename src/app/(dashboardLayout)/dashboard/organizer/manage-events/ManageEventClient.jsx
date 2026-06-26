@@ -20,7 +20,7 @@ const ManageEventClient = ({ events }) => {
                         <Table aria-label="Manage Events Table" >
                             <TableContent>
                                 <TableHeader className="bg-brand-background/40 border-b border-white/5 rounded-t-xl">
-                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>EVENT</TableColumn>
+                                    <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20" isRowHeader>Name</TableColumn>
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">CATEGORY</TableColumn>
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">DATE</TableColumn>
                                     <TableColumn className="py-4 px-6 text-slate-400 font-extrabold uppercase text-[11px] tracking-wider border-b border-white/5 bg-brand-background/20">TICKET PRICE</TableColumn>
