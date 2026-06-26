@@ -52,7 +52,7 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     className="flex flex-col sm:flex-row justify-center items-center gap-4"
                 >
-                    <Link href="/browse-prompts">
+                    <Link href="/events">
                         <Button
                             className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold h-14 px-8 text-md shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all w-full sm:w-auto"
                             radius="full"
