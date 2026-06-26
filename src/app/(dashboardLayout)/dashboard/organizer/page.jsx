@@ -9,7 +9,7 @@ import { FaCrown, FaCalendarAlt, FaUsers, FaDollarSign } from "react-icons/fa";
 
 const OrganizerOverviewPage = async () => {
   const user = await getUser();
-  // const isPremium = user?.isPremium;
+  const isPremium = user?.isPremium;
   const events = user?.email ? await myEvents(user.email) : [];
   const attendees = user?.email ? await getOrganizerAttendees(user.email) : [];
 
@@ -90,6 +90,13 @@ const OrganizerOverviewPage = async () => {
       </div>
 
       
+      {
+        !isPremium && (
+          <div className="flex justify-end">
+            <UpgradePremiumButton />
+          </div>
+        )
+      }
     </div>
   );
 };
