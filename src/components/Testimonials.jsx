@@ -22,7 +22,7 @@ export default function Testimonials() {
     <section className=" py-24 max-w-7xl mx-auto px-6 w-full">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-slate-950 md:text-4xl font-sans">Client Reviews</h2>
-        <p className="text-slate-600 max-w-xl mx-auto text-sm mt-3">
+        <p className="text-black max-w-xl mx-auto text-sm mt-3">
           Don't just take our word for it. Hear from creators and users thriving on the platform.
         </p>
       </div>
