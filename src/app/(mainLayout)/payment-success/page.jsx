@@ -94,7 +94,7 @@ export default async function PaymentSuccess({ searchParams }) {
                 radius="lg"
                 endContent={<FaArrowRight />}
               >
-                View My Tickets
+                View My Payments
               </Button>
             </Link>
             <Link href="/events">
@@ -104,7 +104,7 @@ export default async function PaymentSuccess({ searchParams }) {
                 className="w-full sm:w-auto border-white/10 hover:bg-white/5 text-white font-semibold h-11 px-6"
                 radius="lg"
               >
-                Browse More Events
+                Browse More Prompts
               </Button>
             </Link>
           </CardFooter>

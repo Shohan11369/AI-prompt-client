@@ -4,6 +4,7 @@ import Statistics from "@/components/Statistics";
 import HomepageDynamicTestimonials from "@/components/interactions/HomepageDynamicTestimonials";
 import TopOrganizers from "@/components/TopOrganizers";
 import WhyChoose from "@/components/WhyChoose";
+import HowItWorks from "@/components/HowItWorks";
 import { baseURL } from "@/lib/api/baseUrl";
 import { getStatistics } from "@/lib/api/statistics";
 
@@ -30,6 +31,7 @@ export default async function HomePage() {
       <Hero />
       <FeaturedEvents />
       <WhyChoose />
+      <HowItWorks />
       <Statistics stats={stats} />
 
       
