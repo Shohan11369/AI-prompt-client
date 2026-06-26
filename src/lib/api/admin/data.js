@@ -1,4 +1,5 @@
 import { getDb } from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export async function getAllUsers() {
   const db = await getDb();
@@ -17,8 +18,29 @@ export async function getAllReports() {
   // For each report, we need to enrich it with prompt title and reporter name
   const enrichedReports = await Promise.all(
     reports.map(async (report) => {
-      const prompt = await db.collection("prompts").findOne({ _id: report.promptId });
-      const reporter = await db.collection("user").findOne({ _id: report.userId });
+      // Try finding by ObjectId first, fallback to string
+      let promptId = report.promptId;
+      if (!(promptId instanceof ObjectId)) {
+        try {
+          promptId = new ObjectId(promptId);
+        } catch (e) {
+          // Keep as is
+        }
+      }
+      
+      const prompt = await db.collection("prompts").findOne({ _id: promptId });
+      
+      // Similarly for userId
+      let userId = report.userId;
+      if (!(userId instanceof ObjectId)) {
+        try {
+          userId = new ObjectId(userId);
+        } catch (e) {
+          // Keep as is
+        }
+      }
+      
+      const reporter = await db.collection("user").findOne({ _id: userId });
 
       return {
         _id: report._id.toString(),

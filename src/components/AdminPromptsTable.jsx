@@ -14,8 +14,9 @@ const statusStyles = {
   pending: "bg-yellow-100 text-yellow-700 border-yellow-200",
 };
 
-const AdminPromptsTable = ({ prompts }) => {
+const AdminPromptsTable = ({ prompts: initialPrompts }) => {
   const router = useRouter();
+  const [prompts, setPrompts] = useState(initialPrompts);
   const [feedbacks, setFeedbacks] = useState({});
 
   const handleAction = async (id, action) => {
@@ -33,7 +34,15 @@ const AdminPromptsTable = ({ prompts }) => {
         
         if (res.ok) {
           toast.success(`Prompt successfully ${action}ed.`);
-          router.refresh();
+          
+          if (action === 'delete') {
+            setPrompts(prev => prev.filter(p => p._id !== id));
+          } else {
+            setPrompts(prev => prev.map(p => 
+              p._id === id ? { ...p, status: action === 'approve' ? 'approved' : 'rejected' } : p
+            ));
+          }
+          
           setFeedbacks(prev => ({ ...prev, [id]: "" }));
         } else {
             toast.error(`Failed to ${action} prompt.`);

@@ -24,15 +24,15 @@ export async function POST(req, { params }) {
             return NextResponse.json({ error: "Invalid action" }, { status: 400 });
     }
 
-    await db.collection("events").updateOne({ _id: new ObjectId(id) }, { $set: update });
+    await db.collection("reports").updateOne({ _id: new ObjectId(id) }, { $set: update });
     return NextResponse.json({ success: true });
 }
 
 export async function DELETE(req, { params }) {
     const { id } = await params;
-    console.log("Attempting to delete prompt with ID:", id);
+    console.log("Attempting to delete report with ID:", id);
     const db = await getDb();
-    const result = await db.collection("events").deleteOne({ _id: new ObjectId(id) });
+    const result = await db.collection("reports").deleteOne({ _id: new ObjectId(id) });
     console.log("Delete result:", result);
     return NextResponse.json({ success: result.deletedCount === 1 });
 }
