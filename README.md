@@ -2,10 +2,7 @@
 
 A full-stack AI prompt marketplace built with **Next.js 16**, where users can browse, purchase, and manage expert-crafted prompts for ChatGPT, Midjourney, Claude, and more.
 
-## 🌐 Live Links
 
-- **Client:** [Live Site](https://ai-prompt-client.vercel.app)
-- **Server:** [API Server](https://ai-prompt-server.vercel.app)
 
 ## ✨ Key Features
 
