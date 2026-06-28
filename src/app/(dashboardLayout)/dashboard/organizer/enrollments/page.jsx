@@ -80,7 +80,7 @@ const OrganizerEnrollmentsPage = async () => {
             <h2 className="text-3xl font-extrabold text-gray-400">{rows.length}</h2>
         </Card>
         <Card className="glass border-white/5 p-6" radius="lg">
-            <span className="text-black text-xs font-bold uppercase tracking-wider">Unique Attendees</span>
+            <span className="text-black text-xs font-bold uppercase tracking-wider">Users</span>
             <h2 className="text-3xl font-extrabold text-gray-400">{new Set(rows.map((row) => row.attendeeEmail)).size}</h2>
         </Card>
         <Card className="glass border-white/5 p-6" radius="lg">

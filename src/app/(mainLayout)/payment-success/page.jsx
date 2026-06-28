@@ -34,6 +34,18 @@ export default async function PaymentSuccess({ searchParams }) {
   });
 
   if (res.ok) {
+    // Upgrade the attendee to premium after successful purchase
+    await fetch(`${baseURL}/api/users/upgrade-premium/${session?.customer_email}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userEmail: session?.customer_email,
+        transactionId: session?.payment_intent?.id,
+        paymentStatus: session?.payment_status,
+        paymentType: "booking",
+        amount: session?.metadata?.amount,
+      }),
+    });
     await handlePaymentSuccessRedirect();
   }
 

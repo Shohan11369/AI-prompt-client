@@ -11,7 +11,15 @@ export default async function ProfilePage() {
   
   // Count all bookings for the user to be more inclusive
   const bookings = await db.collection("bookings").find({ attendeeEmail: user.email }).toArray();
-  const isPremium = user.isPremium || bookings.length >= 4;
+  const isPremium = user.isPremium || bookings.length >= 1;
+
+  // If the user qualifies as premium but isPremium is not yet persisted, update the database
+  if (isPremium && !user.isPremium) {
+    await db.collection("user").updateOne(
+      { email: user.email },
+      { $set: { isPremium: true } }
+    );
+  }
   
   // Total Prompts only makes sense for organizers. If attendee, it's 0.
   const totalPrompts = user.role === 'organizer' ? await db.collection("events").countDocuments({ organizerEmail: user.email }) : 0;
@@ -36,4 +44,3 @@ export default async function ProfilePage() {
     </div>
   );
 }
-
