@@ -3,6 +3,8 @@ import { FaChevronRight } from "react-icons/fa";
 import EventCard from "./EventCard"; 
 import { fetchFeaturedEvents } from "@/lib/api/events/data"; 
 
+export const dynamic = 'force-dynamic';
+
 export default async function FeaturedEvents() {
   let events = [];
   

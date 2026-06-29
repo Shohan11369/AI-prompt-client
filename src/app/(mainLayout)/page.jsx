@@ -8,6 +8,7 @@ import HowItWorks from "@/components/HowItWorks";
 import { baseURL } from "@/lib/api/baseUrl";
 import { getStatistics } from "@/lib/api/statistics";
 
+export const dynamic = 'force-dynamic';
 
 async function getHomeEvents() {
   try {
