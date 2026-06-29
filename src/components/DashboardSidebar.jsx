@@ -22,6 +22,7 @@ import {
 const DashboardSideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  
   const handleLogout = async () => {
     await authClient.signOut();
     window.location.href = "/";
@@ -130,7 +131,6 @@ const DashboardSideBar = () => {
       icon: FaUserCircle,
       href: "/dashboard/attendee/my-reviews",
     },
-
     {
       key: "enrollments",
       label: "Enrollments",

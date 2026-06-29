@@ -10,11 +10,14 @@ import Logo from "@/components/Logo";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
 
     const onSubmit = async (data) => {
 
@@ -29,7 +32,7 @@ const LoginPage = () => {
             toast.error("Sign-in failed...")
         }
         else {
-            redirect("/")
+            router.push(callbackUrl || "/");
         }
 
 
@@ -111,7 +114,7 @@ const LoginPage = () => {
                         onClick={async () => {
                             const { error } = await authClient.signIn.social({ 
                                 provider: "google",
-                                callbackURL: "/"
+                                callbackURL: callbackUrl || "/"
                             });
                             if (error) {
                                 toast.error(error.message || "Google login failed");

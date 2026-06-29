@@ -7,6 +7,9 @@ import Image from "next/image";
 import { FaCalendarAlt, FaMapMarkerAlt, FaArrowLeft } from "react-icons/fa";
 import { baseURL } from "@/lib/api/baseUrl";
 import BookingWidget from "@/components/BookingWidget";
+import { getUser } from "@/lib/api/session";
+import UpgradePremiumButton from "@/components/UpgradePremiumButton";
+import { redirect } from "next/navigation";
 
 const fetchEvent = async (id) => {
     
@@ -18,6 +21,15 @@ const fetchEvent = async (id) => {
 export default async function EventDetailsPage({ params }) {
     const { id } = await params;
     const event = await fetchEvent(id);
+    const user = await getUser();
+
+    if (!user) {
+        redirect(`/login?callbackUrl=/events/${id}`);
+    }
+
+    const isPremiumUser = user?.isPremium;
+    const isPremiumEvent = event?.isPremium;
+    const shouldRestrict = isPremiumEvent && !isPremiumUser;
 
   
     const eventImageUrl = event?.image && typeof event.image === 'string' && event.image.trim() !== ""
@@ -80,13 +92,21 @@ export default async function EventDetailsPage({ params }) {
                     {/* Description */}
                     <div className="space-y-4">
                         <h2 className="text-2xl font-bold text-slate-950">Prompts Description</h2>
-                        <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line">
-                            {event?.description || "Master this AI tool with our comprehensive workflow. Learn implementation guidelines, best prompts, and optimization techniques for your day-to-day productivity."}
-                        </p>
+                        <div className={`relative ${shouldRestrict ? "blur-md pointer-events-none" : ""}`}>
+                            <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-line">
+                                {event?.description || "Master this AI tool with our comprehensive workflow. Learn implementation guidelines, best prompts, and optimization techniques for your day-to-day productivity."}
+                            </p>
+                        </div>
+                        {shouldRestrict && (
+                            <div className="flex flex-col items-center justify-center p-8 bg-slate-100 rounded-2xl border border-slate-200 gap-4">
+                                <p className="text-slate-700 font-semibold">This is a premium event description. Upgrade to view.</p>
+                                <UpgradePremiumButton />
+                            </div>
+                        )}
                     </div>
 
                     {/* New Interaction Features Section */}
-                    <div className="mt-8">
+                    <div className={`mt-8 ${shouldRestrict ? "blur-md pointer-events-none" : ""}`}>
                         {(() => {
                             const PromptActions = require("@/components/interactions/PromptActions").default;
                             return <PromptActions prompt={event} />;

@@ -61,4 +61,3 @@ export default function ReviewSection({ promptId, initialReviews = [] }) {
     </div>
   );
 }
-

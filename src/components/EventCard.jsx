@@ -1,9 +1,15 @@
+"use client";
 import Link from "next/link";
 import { Card, Button } from "@heroui/react";
-import { FaCopy, FaRobot, FaUser } from "react-icons/fa"; 
+import { FaCopy, FaRobot, FaUser } from "react-icons/fa";
 import Image from "next/image";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function EventCard({ event }) {
+  const { data: session } = useSession();
+  const router = useRouter();
+  
   if (!event) return null;
 
   const currentItem = event;
@@ -17,6 +23,13 @@ export default function EventCard({ event }) {
   const imageUrl = hasValidImage 
     ? currentItem.image 
     : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe";
+
+  const handleViewDetails = (e) => {
+    if (!session) {
+      e.preventDefault();
+      router.push("/login");
+    }
+  };
 
   return (
     <Card
@@ -62,7 +75,7 @@ export default function EventCard({ event }) {
       </div>
 
       <div className="px-6 pb-6 pt-4 border-t border-slate-100 mt-auto bg-slate-50">
-        <Link href={`/events/${currentItem?._id || currentItem?.id || ""}`}>
+        <Link href={`/events/${currentItem?._id || currentItem?.id || ""}`} onClick={handleViewDetails}>
           <Button
             size="sm"
             className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold h-9"
