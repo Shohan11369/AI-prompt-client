@@ -21,7 +21,7 @@ const UpgradePremiumButton = () => {
         <Button
             onClick={updateToPremium}
             className="bg-yellow-500 hover:bg-yellow-400 text-brand-background font-bold h-11 px-6 shadow-lg shadow-yellow-500/10 shrink-0" radius="lg">
-            Upgrade to Premium
+           Click The Pruchase Button
         </Button>
     );
 };

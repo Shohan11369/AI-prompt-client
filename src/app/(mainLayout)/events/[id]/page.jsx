@@ -28,7 +28,8 @@ export default async function EventDetailsPage({ params }) {
     }
 
     const isPremiumUser = user?.isPremium;
-    const isPremiumEvent = event?.isPremium;
+    // Check if event is marked premium OR has a price > 0
+    const isPremiumEvent = event?.isPremium || (event?.ticketPrice && event.ticketPrice > 0);
     const shouldRestrict = isPremiumEvent && !isPremiumUser;
 
   
